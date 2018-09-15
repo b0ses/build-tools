@@ -8,6 +8,8 @@
 
   tasks:
 
+    - debug: msg="SSH Key is {{ my_ssh_key.ssh_key.id }}"
+
     - name: apply apt-get update --fix-missing
       command: apt-get update --fix-missing
 

@@ -14,6 +14,7 @@
       ssh_key_file=.ssh/id_rsa
 
   - debug: msg="Do_token {{ do_token }}"
+  - debug: msg="User {{ ansible_user_id }}"
 
   - name: ensure key exists at DigitalOcean
     digital_ocean: >

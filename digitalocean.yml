@@ -26,13 +26,13 @@
     digital_ocean: >
       state=present
       command=droplet
-      name=custom-stream-dashboard
+      name=custom_stream_dashboard
       unique_name=yes
       size_id=1gb
       region_id=nyc1
       image_id=ubuntu-16-04-x64
       ssh_key_ids={{ my_ssh_key.ssh_key.id }}
       api_token={{ do_token }}
-    register: custom-stream-dashboard
+    register: custom_stream_dashboard
 
-  - debug: msg="IP is {{ custom-stream-dashboard.droplet.ip_address }}"
+  - debug: msg="IP is {{ custom_stream_dashboard.droplet.ip_address }}"

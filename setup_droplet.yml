@@ -44,8 +44,3 @@
 
   - name: Wait for SSH to come up
     local_action: wait_for host={{ current_droplet.droplet.ip_address }} port=22 timeout=320 state=started
-
-  - name: remove droplet ip from ssh known hosts
-    known_hosts:
-      name: "{{ current_droplet.droplet.ip_address }}"
-      key: "{{ current_droplet.droplet.ip_address }} {{ lookup('file', '~/.ssh/id_rsa.pub') }}"

@@ -48,7 +48,4 @@
   - name: remove droplet ip from ssh known hosts
     known_hosts:
       name: "{{ current_droplet.droplet.ip_address }}"
-      state: absent
-
-  - name: re-add it back in
-    local_action: ssh-keyscan -H {{ current_droplet.droplet.ip_address }} >> ~/.ssh/known_hosts
+      key: "{{ current_droplet.droplet.ip_address }} {{ lookup('file', '~/.ssh/id_rsa.pub') }}"

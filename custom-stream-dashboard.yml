@@ -8,7 +8,7 @@
 
   tasks:
 
-    - debug: msg="SSH Key is {{ hostvars['digitalocean']['my_ssh_key'].ssh_key.id }}"
+    - debug: msg="SSH Key is {{ hostvars['localhost']['my_ssh_key'].ssh_key.id }}"
 
     - name: apply apt-get update --fix-missing
       command: apt-get update --fix-missing

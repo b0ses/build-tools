@@ -1,14 +1,11 @@
 - import_playbook: setup_droplet.yml
 - name: Configure droplet for Custum Stream Dashboard
   hosts: custom-stream-dashboard
-  gather_facts: False
   become_method: sudo
 
   vars:
 
   tasks:
-
-    - debug: msg="SSH Key is {{ hostvars['localhost']['my_ssh_key'].ssh_key.id }}"
 
     - name: apply apt-get update --fix-missing
       command: apt-get update --fix-missing

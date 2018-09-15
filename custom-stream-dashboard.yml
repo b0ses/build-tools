@@ -1,0 +1,14 @@
+- name: Configure droplet for Custum Stream Dashboard
+- hosts: custom-stream-dashboard
+  gather_facts: True
+
+  vars:
+
+  tasks:
+
+    - name: apply apt-get update --fix-missing
+      command: apt-get update --fix-missing
+      sudo: yes
+    - name: install java
+      apt: pkg=default-jdk
+      sudo: yes

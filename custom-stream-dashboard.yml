@@ -1,5 +1,5 @@
 - name: Configure droplet for Custum Stream Dashboard
-- hosts: custom-stream-dashboard
+  hosts: custom-stream-dashboard
   gather_facts: True
 
   vars:

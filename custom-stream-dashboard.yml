@@ -1,7 +1,7 @@
 - import_playbook: setup_droplet.yml
 - name: Configure droplet for Custum Stream Dashboard
   hosts: custom-stream-dashboard
-  remote_user: root
+  remote_user: "{{ ansible_user_id }}"
   become_method: sudo
 
   vars:
@@ -13,3 +13,4 @@
 
     - name: install java
       apt: pkg=default-jdk
+  

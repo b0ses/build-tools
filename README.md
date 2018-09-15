@@ -26,3 +26,19 @@ AWS, DigitalOcean, whatever. Using DigitalOcean with Ubuntu 18
 > sudo systemctl start jenkins.service
 > sudo systemctl enable jenkins.service
 ```
+
+### Install Ansible
+```
+> sudo apt-get update
+> sudo apt-get install software-properties-common
+> sudo apt-add-repository ppa:ansible/ansible
+> sudo apt-get update
+> sudo apt-get install ansible
+```
+
+### Configure Ansible to work with DigitalOcean
+```
+> sudo apt-get install python-pip
+> sudo pip install 'dopy>=0.3.5,<=0.3.5'
+```
+Copy this repo's `hosts` to `/etc/ansible`

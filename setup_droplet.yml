@@ -22,7 +22,7 @@
       name=jenkins-key
       ssh_pub_key={{ lookup('file', '~/.ssh/id_rsa.pub') }}
       api_token={{ do_token }}
-    register: jenkins-key
+    register: jenkins_key
 
   - name: ensure droplet exists
     digital_ocean: >
@@ -33,7 +33,7 @@
       size_id=1gb
       region_id=nyc1
       image_id=ubuntu-16-04-x64
-      ssh_key_ids={{ jenkins-key.ssh_key.id }}
+      ssh_key_ids={{ jenkins_key.ssh_key.id }}
       api_token={{ do_token }}
     register: current_droplet
 

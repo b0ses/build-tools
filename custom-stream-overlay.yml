@@ -33,3 +33,9 @@
     - name: install custom stream API's dependencies
       pip:
         requirements: /git/custom-stream-api/requirements.txt
+
+    - name: populate secret key
+      lineinfile:
+          path: /git/custom-stream-api/settings.py
+          regexp: "^SECRET = ''"
+          line: "SELINUX = '{{ SECRET_KEY }}'"

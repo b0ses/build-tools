@@ -73,6 +73,7 @@
     - name: reinstall nodejs
       apt:
         name: nodejs
+        force: yes
 
     - name: make clone directory
       file:

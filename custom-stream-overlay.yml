@@ -21,6 +21,11 @@
         name: python3-pip
         update_cache: yes
 
+    - name: remove clone directory if exists
+      file:
+        path: /git/custom-stream-api
+        state: absent
+
     - name: make clone directory
       file:
         path: /git/custom-stream-api
@@ -46,6 +51,11 @@
       apt:
         name: npm
         update_cache: yes
+
+    - name: remove clone directory if exists
+      file:
+        path: /git/custom-stream-overlay
+        state: absent
 
     - name: make clone directory
       file:

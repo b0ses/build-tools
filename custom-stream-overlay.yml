@@ -49,9 +49,10 @@
     # CUSTOM STREAM OVERLAY
     - name: Download nodejs 8 installer
       get_url: url=https://deb.nodesource.com/setup_8.x dest=/tmp/nodejs8-installer.sh
+      mode: 0700
 
     - name: Execute the nodejs8-installer.sh
-      shell: sudo /tmp/nodejs8-installer.sh
+      shell: /tmp/nodejs8-installer.sh
 
     - name: Remove the nodejs8-installer.sh
       file: path=/tmp/nodejs8-installer.sh state=absent

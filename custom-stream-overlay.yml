@@ -50,6 +50,15 @@
     - name: Setup for nodejs 8
       local_action: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
+    - name: Download nodejs 8 installer
+      get_url: url=https://deb.nodesource.com/setup_8.x dest=/tmp/nodejs8-installer.sh
+
+    - name: Execute the nodejs8-installer.sh
+      shell: /tmp/nodejs8-installer.sh
+
+    - name: Remove the nodejs8-installer.sh
+      file: path=/tmp/nodejs8-installer.sh state=absent
+
     - name: install nodejs
       apt:
         name: nodejs

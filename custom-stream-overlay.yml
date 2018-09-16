@@ -8,9 +8,22 @@
 
   tasks:
 
-    - name: apply apt update --fix-missing
-      command: apt update --fix-missing
+    - name: make git directory
+      command: mkdir /git
 
-    - name: install java
-      apt: pkg=default-jdk
-  
+    - name: update apt
+      apt: update
+
+    # CUSTOM STREAM API
+    - name: install pip3
+      apt:
+        name: python3-pip
+
+    - name: git custom stream API
+      git:
+        repo: "https://github.com/b0ses/custom-stream-api.git"
+        dest: /git
+
+    - name: install custom stream API's dependencies
+      pip:
+        requirements: /git/custom-stream-api/requirements.txt

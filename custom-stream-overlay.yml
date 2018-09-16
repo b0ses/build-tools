@@ -70,6 +70,10 @@
     - name: Remove the nodejs8-installer.sh
       file: path=/tmp/nodejs8-installer.sh state=absent
 
+    - name: reinstall nodejs
+      apt:
+        name: nodejs
+
     - name: make clone directory
       file:
         path: /git/custom-stream-overlay

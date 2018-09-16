@@ -47,14 +47,12 @@
           line: "SECRET = '{{ secret_key }}'"
 
     # CUSTOM STREAM OVERLAY
-    - apt_repository:
-        repo: deb https://deb.nodesource.com/setup_8.x main
-        state: present
+    - name: Setup for nodejs 8
+      local_action: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
     - name: install nodejs
       apt:
-        name: nodejs=6.0.0
-        update_cache: yes
+        name: nodejs
 
     - name: install npm
       apt:

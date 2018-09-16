@@ -47,6 +47,15 @@
           line: "SECRET = '{{ secret_key }}'"
 
     # CUSTOM STREAM OVERLAY
+    - name: install nodejs
+      apt:
+        name: nodejs
+
+    - name: install npm
+      apt:
+        name: npm
+        update_cache: yes
+
     - name: Download nodejs 8 installer
       get_url: url=https://deb.nodesource.com/setup_8.x dest=/tmp/nodejs8-installer.sh
 
@@ -60,15 +69,6 @@
 
     - name: Remove the nodejs8-installer.sh
       file: path=/tmp/nodejs8-installer.sh state=absent
-
-    - name: install nodejs
-      apt:
-        name: nodejs
-
-    - name: install npm
-      apt:
-        name: npm
-        update_cache: yes
 
     - name: make clone directory
       file:

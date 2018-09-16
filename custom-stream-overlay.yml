@@ -40,3 +40,26 @@
           path: /git/custom-stream-api/settings.py
           regexp: "^SECRET = ''"
           line: "SECRET = '{{ secret_key }}'"
+
+    # CUSTOM STREAM OVERLAY
+    - name: install npm
+      apt:
+        name: npm
+        update_cache: yes
+
+    - name: make clone directory
+      file:
+        path: /git/custom-stream-overlay
+        state: directory
+
+    - name: git custom stream overlay
+      git:
+        repo: "https://github.com/b0ses/custom-stream-overlay.git"
+        dest: /git/custom-stream-overlay
+
+    - name: Install packages based on package.json.
+      npm:
+        path: /git/custom-stream-overlay
+
+    - name: Build app
+      shell: npm build

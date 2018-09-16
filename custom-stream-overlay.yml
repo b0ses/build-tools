@@ -9,7 +9,10 @@
   tasks:
 
     - name: make git directory
-      command: mkdir /git
+    file:
+      path: /git
+      state: directory
+      mode: 0755
 
     # CUSTOM STREAM API
     - name: install pip3
@@ -17,10 +20,15 @@
         name: python3-pip
         update_cache: yes
 
+    - name: make clone directory
+    file:
+      path: /git/custom-stream-api
+      state: directory
+
     - name: git custom stream API
       git:
         repo: "https://github.com/b0ses/custom-stream-api.git"
-        dest: /git
+        dest: /git/custom-stream-api
 
     - name: install custom stream API's dependencies
       pip:

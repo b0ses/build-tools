@@ -8,8 +8,8 @@
 
   tasks:
 
-    - name: apply apt-get update --fix-missing
-      command: apt-get update --fix-missing
+    - name: apply apt update --fix-missing
+      command: apt update --fix-missing
 
     - name: install java
       apt: pkg=default-jdk

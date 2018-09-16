@@ -6,6 +6,7 @@
 
   vars:
     secret_key: "{{ lookup('env', 'SECRET_KEY') }}"
+    NODEJS_VERSION: "8"
 
   tasks:
 
@@ -47,33 +48,27 @@
           line: "SECRET = '{{ secret_key }}'"
 
     # CUSTOM STREAM OVERLAY
-    - name: install nodejs
+  tasks:
+    - name: Install the gpg key for nodejs LTS
+      apt_key:
+        url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+        state: present
+
+    - name: Install the nodejs LTS repos
+      apt_repository:
+        repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
+        state: present
+        update_cache: yes
+
+    - name: Install the nodejs
       apt:
         name: nodejs
+        state: present
 
     - name: install npm
       apt:
         name: npm
         update_cache: yes
-
-    - name: Download nodejs 8 installer
-      get_url: url=https://deb.nodesource.com/setup_8.x dest=/tmp/nodejs8-installer.sh
-
-    - name: Change permissions of nodejs 8 installer
-      file:
-        path: /tmp/nodejs8-installer.sh
-        mode: 0700
-
-    - name: Execute the nodejs8-installer.sh
-      shell: /tmp/nodejs8-installer.sh
-
-    - name: Remove the nodejs8-installer.sh
-      file: path=/tmp/nodejs8-installer.sh state=absent
-
-    - name: reinstall nodejs
-      apt:
-        name: nodejs
-        force: yes
 
     - name: make clone directory
       file:

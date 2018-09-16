@@ -14,11 +14,11 @@
       ssh_key_file=.ssh/id_rsa
 
   - name: Set authorized key took from file
-  authorized_key:
-    user: "{{ ansible_user_id }}"
-    state: present
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-    exclusive: True
+    authorized_key:
+      user: "{{ ansible_user_id }}"
+      state: present
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      exclusive: True
 
   - name: ensure key exists at DigitalOcean
     digital_ocean: >

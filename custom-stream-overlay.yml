@@ -49,7 +49,11 @@
     # CUSTOM STREAM OVERLAY
     - name: Download nodejs 8 installer
       get_url: url=https://deb.nodesource.com/setup_8.x dest=/tmp/nodejs8-installer.sh
-      mode: 0700
+
+    - name: Change permissions of nodejs 8 installer
+      file:
+        path: /tmp/nodejs8-installer.sh
+        mode: 0700
 
     - name: Execute the nodejs8-installer.sh
       shell: /tmp/nodejs8-installer.sh

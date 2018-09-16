@@ -39,4 +39,4 @@
       lineinfile:
           path: /git/custom-stream-api/settings.py
           regexp: "^SECRET = ''"
-          line: "SELINUX = '{{ secret_key }}'"
+          line: "SECRET = '{{ secret_key }}'"

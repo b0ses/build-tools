@@ -11,13 +11,11 @@
     - name: make git directory
       command: mkdir /git
 
-    - name: update apt
-      apt: update
-
     # CUSTOM STREAM API
     - name: install pip3
       apt:
         name: python3-pip
+        update_cache: yes
 
     - name: git custom stream API
       git:

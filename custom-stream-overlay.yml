@@ -10,9 +10,9 @@
   tasks:
 
     - name: remove git directory if exists
-    file:
-      path: /git
-      state: absent
+      file:
+        path: /git
+        state: absent
 
     - name: make git directory
       file:

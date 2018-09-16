@@ -47,9 +47,6 @@
           line: "SECRET = '{{ secret_key }}'"
 
     # CUSTOM STREAM OVERLAY
-    - name: Setup for nodejs 8
-      local_action: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-
     - name: Download nodejs 8 installer
       get_url: url=https://deb.nodesource.com/setup_8.x dest=/tmp/nodejs8-installer.sh
 

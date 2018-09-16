@@ -64,7 +64,7 @@
         update_cache: yes
 
     - name: Build app
-      shell: apt install -f nodejs
+      shell: apt install nodejs -f
 
     - name: make clone directory
       file:

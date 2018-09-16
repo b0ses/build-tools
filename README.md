@@ -29,16 +29,16 @@ AWS, DigitalOcean, whatever. Using DigitalOcean with Ubuntu 18
 
 ### Install Ansible
 ```
-> sudo apt-get update
-> sudo apt-get install software-properties-common
+> sudo apt update
+> sudo apt install software-properties-common
 > sudo apt-add-repository ppa:ansible/ansible
-> sudo apt-get update
-> sudo apt-get install ansible
+> sudo apt update
+> sudo apt install ansible
 ```
 
 ### Configure Ansible to work with DigitalOcean
 ```
-> sudo apt-get install python-pip
-> sudo pip install 'dopy>=0.3.5,<=0.3.5'
+> sudo apt install python3-pip
+> sudo pip3 install 'dopy>=0.3.5,<=0.3.5'
 ```
 Copy this repo's `hosts` to `/etc/ansible`

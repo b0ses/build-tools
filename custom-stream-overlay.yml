@@ -48,7 +48,7 @@
 
     # CUSTOM STREAM OVERLAY
     - apt_repository:
-        repo: deb https://deb.nodesource.com/setup_8.x
+        repo: deb https://deb.nodesource.com/setup_8.x main
         state: present
 
     - name: install nodejs

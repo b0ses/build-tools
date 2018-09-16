@@ -38,7 +38,11 @@ AWS, DigitalOcean, whatever. Using DigitalOcean with Ubuntu 18
 
 ### Configure Ansible to work with DigitalOcean
 ```
-> sudo apt install python3-pip
-> sudo pip3 install 'dopy>=0.3.5,<=0.3.5'
+> sudo apt install python-pip
+> sudo pip install 'dopy>=0.3.5,<=0.3.5'
 ```
 Copy this repo's `hosts` to `/etc/ansible`
+
+### Configure Jenkins
+
+Go to [jenkins_server_ip]:8080. Follow instructions.

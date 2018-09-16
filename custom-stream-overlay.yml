@@ -9,7 +9,6 @@
     NODEJS_VERSION: "8"
 
   tasks:
-
     - name: remove git directory if exists
       file:
         path: /git
@@ -48,7 +47,6 @@
           line: "SECRET = '{{ secret_key }}'"
 
     # CUSTOM STREAM OVERLAY
-  tasks:
     - name: Install the gpg key for nodejs LTS
       apt_key:
         url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"

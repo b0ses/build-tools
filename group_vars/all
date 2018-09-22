@@ -1,6 +1,6 @@
 ---
 app_name: "{{ lookup('env', 'project') }}"
-app_package: {{ app_name }}
+app_package: "{{ app_name }}"
 app_callable: app
 base_dir: '/srv/{{ app_name }}'
 appdata_dir: '{{ base_dir }}/appdata'

@@ -3,7 +3,7 @@ app_name: "{{ lookup('env', 'project') }}"
 app_package: "{{ app_name }}"
 app_callable: app
 base_dir: '/git/{{ app_name }}'
-appdata_dir: '{{ base_dir }}'
+appdata_dir: '{{ base_dir }}/{{ app_name }}'
 nginx_server_name: 'localhost {{ app_name }}.local'
 # This affects HTTP only. HTTPS requires manual config.
 # Most people want to use 80 here.

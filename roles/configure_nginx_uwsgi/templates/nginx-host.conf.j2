@@ -6,6 +6,11 @@ server {
     # SSL requires extra configuration!
     server_name {{ nginx_server_name }};
 
+    {% if nginx_http_location %}
+    location / {
+        root {{ nginx_http_location }};
+    }
+    {% else %}
     location / {
         include uwsgi_params;
         uwsgi_pass unix:{{ base_dir }}/uwsgi.sock;
@@ -18,4 +23,5 @@ server {
     location /favicon.ico {
         alias {{ appdata_dir }}/static/favicon.ico;
     }
+    {% endif %}
 }

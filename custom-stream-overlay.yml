@@ -12,6 +12,7 @@
     app_name: 'custom-stream-api'
     app_package: "custom_stream_api.server"
     app_callable: "app"
+    nginx_http_port: 5000
 
   roles:
     - install_Debian_Ubuntu

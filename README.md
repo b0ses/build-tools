@@ -46,3 +46,8 @@ Copy this repo's `hosts` to `/etc/ansible`
 ### Configure Jenkins
 
 Go to [jenkins_server_ip]:8080. Follow instructions.
+
+
+# Special Thanks
+
+The ansible scripts/structure setup in this repo is highly based on [Kwpolska](https://github.com/Kwpolska)'s [ansible-nginx-uwsgi](https://github.com/Kwpolska/ansible-nginx-uwsgi), which is a great tool to learn how dynamic and modular ansible can be.

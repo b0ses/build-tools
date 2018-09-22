@@ -1,51 +1,22 @@
-- import_playbook: setup_droplet.yml
+- name: Create droplet
+  hosts: digitalocean
+  roles:
+    - setup_droplet
+
 - name: Configure droplet for Custum Stream Dashboard
   hosts: custom-stream-overlay
   remote_user: root
-  become_method: sudo
+  become: yes
 
-  vars:
-    secret_key: "{{ lookup('env', 'SECRET_KEY') }}"
-    NODEJS_VERSION: "8"
+  roles:
+    - install_Debian_Ubuntu
+    - setup_venv_app
+    - patch_config_Debian_Ubuntu
+    - configure_nginx_uwsgi
+    - create_service_Debian_Ubuntu
+    - start_services
 
   tasks:
-    - name: remove git directory if exists
-      file:
-        path: /git
-        state: absent
-
-    - name: make git directory
-      file:
-        path: /git
-        state: directory
-        mode: 0755
-
-    # CUSTOM STREAM API
-    - name: install pip3
-      apt:
-        name: python3-pip
-        update_cache: yes
-
-    - name: make clone directory
-      file:
-        path: /git/custom-stream-api
-        state: directory
-
-    - name: git custom stream API
-      git:
-        repo: "https://github.com/b0ses/custom-stream-api.git"
-        dest: /git/custom-stream-api
-
-    - name: install custom stream API's dependencies
-      pip:
-        requirements: /git/custom-stream-api/requirements.txt
-
-    - name: populate secret key
-      lineinfile:
-          path: /git/custom-stream-api/settings.py
-          regexp: "^SECRET = ''"
-          line: "SECRET = '{{ secret_key }}'"
-
     # CUSTOM STREAM OVERLAY
     - name: install npm
       apt:

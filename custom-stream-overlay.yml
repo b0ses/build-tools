@@ -10,7 +10,8 @@
 
   vars:
     app_name: 'custom-stream-api'
-    uwsgi_env: ["env = DJANGO_SETTINGS_MODULE=custom-stream-api.settings"]
+    app_package: "app"
+    app_callable: "app:app"
 
   roles:
     - install_Debian_Ubuntu

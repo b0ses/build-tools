@@ -22,16 +22,16 @@
     - create_service_Debian_Ubuntu
     - start_services
 
-#- name: Configure droplet for Custom Stream Overlay
-#  hosts: custom-stream-overlay
-#  remote_user: root
-#  become: yes
-#
-#  vars:
-#    app_name: 'custom-stream-overlay'
-#
-#  roles:
-#    - install_npm_nodejs
-#    - setup_react_app
-#    - configure_nginx_uwsgi
-#    - start_services
+- name: Configure droplet for Custom Stream Overlay
+  hosts: custom-stream-overlay
+  remote_user: root
+  become: yes
+
+  vars:
+    app_name: 'custom-stream-overlay'
+
+  roles:
+    - install_npm_nodejs
+    - setup_react_app
+    - configure_nginx_uwsgi
+    - start_services

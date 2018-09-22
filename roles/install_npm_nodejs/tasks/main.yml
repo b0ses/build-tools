@@ -1,8 +1,13 @@
 ---
+- name: Check if npm is installed
+  command: npm -v
+  register: npm_check
+
 - name: install npm
   apt:
     name: npm
     update_cache: yes
+  when: npm_check.rc == 1
 
 - name: Install the gpg key for nodejs LTS
   apt_key:

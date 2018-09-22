@@ -10,8 +10,8 @@
 
   vars:
     app_name: 'custom-stream-api'
-    app_package: "app"
-    app_callable: "app:app"
+    app_package: "custom_stream_api.server"
+    app_callable: "custom_stream_api.server:app"
 
   roles:
     - install_Debian_Ubuntu

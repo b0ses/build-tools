@@ -25,7 +25,7 @@
 #  become: yes
 #
 #  vars:
-#    app_name: 'custom-stream-api'
+#    app_name: 'custom-stream-overlay'
 #
 #  roles:
 #    - install_npm_nodejs

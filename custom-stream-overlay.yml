@@ -8,6 +8,9 @@
   remote_user: root
   become: yes
 
+  vars:
+    app_name: 'custom-stream-api'
+
   roles:
     - install_Debian_Ubuntu
     - setup_venv_app

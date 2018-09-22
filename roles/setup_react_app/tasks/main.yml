@@ -1,0 +1,18 @@
+---
+- name: Remove base directory (if present)
+  file:
+    path: '{{ base_dir }}'
+    state: absent
+
+- name: Clone Git Repository
+  git:
+    repo: '{{ git_repo }}'
+    dest: '{{ base_dir }}'
+    version: '{{ git_branch }}'
+
+- name: Install packages based on package.json
+  npm:
+    path: '{{ base_dir }}'
+
+- name: Build app
+  shell: npm build

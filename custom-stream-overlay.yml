@@ -3,7 +3,7 @@
   roles:
     - setup_droplet
 
-- name: Configure droplet for Custum Stream Dashboard
+- name: Configure droplet for Custum Stream API
   hosts: custom-stream-overlay
   remote_user: root
   become: yes
@@ -19,40 +19,14 @@
     - create_service_Debian_Ubuntu
     - start_services
 
-  tasks:
-    # CUSTOM STREAM OVERLAY
-    - name: install npm
-      apt:
-        name: npm
-        update_cache: yes
+- name: Configure droplet for Custum Stream Overlay
+  hosts: custom-stream-overlay
+  remote_user: root
+  become: yes
 
-    - name: Install the gpg key for nodejs LTS
-      apt_key:
-        url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-        state: present
+  vars:
+    app_name: 'custom-stream-api'
 
-    - name: Install the nodejs LTS repos
-      apt_repository:
-        repo: "deb https://deb.nodesource.com/node_{{ nodejs_version }}.x {{ ansible_distribution_release }} main"
-        state: present
-        update_cache: yes
-
-    - name: Build app
-      shell: apt install nodejs -y
-
-    - name: make clone directory
-      file:
-        path: /git/custom-stream-overlay
-        state: directory
-
-    - name: git custom stream overlay
-      git:
-        repo: "https://github.com/b0ses/custom-stream-overlay.git"
-        dest: /git/custom-stream-overlay
-
-    - name: Install packages based on package.json.
-      npm:
-        path: /git/custom-stream-overlay
-
-    - name: Build app
-      shell: npm build
+  roles:
+    - install_npm_nodejs
+    - setup_react_app

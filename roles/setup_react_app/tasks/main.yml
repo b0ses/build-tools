@@ -15,4 +15,4 @@
     path: '{{ base_dir }}'
 
 - name: Build app
-  shell: npm build
+  shell: npm run build

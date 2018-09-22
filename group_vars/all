@@ -8,7 +8,7 @@ nginx_server_name: 'localhost {{ app_name }}.local'
 # This affects HTTP only. HTTPS requires manual config.
 # Most people want to use 80 here.
 nginx_http_port: 80
-nginx_http_location: '{{ base_dir }}/public'
+nginx_http_location: '{{ base_dir }}/build'
 uwsgi_module: '{{ app_package }}:{{ app_callable }}'
 uwsgi_processes: 1
 uwsgi_threads: 1

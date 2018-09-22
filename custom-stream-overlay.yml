@@ -3,7 +3,7 @@
   roles:
     - setup_droplet
 
-- name: Configure droplet for Custum Stream API
+- name: Configure droplet for Custom Stream API
   hosts: custom-stream-overlay
   remote_user: root
   become: yes
@@ -19,7 +19,7 @@
     - create_service_Debian_Ubuntu
     - start_services
 
-- name: Configure droplet for Custum Stream Overlay
+- name: Configure droplet for Custom Stream Overlay
   hosts: custom-stream-overlay
   remote_user: root
   become: yes

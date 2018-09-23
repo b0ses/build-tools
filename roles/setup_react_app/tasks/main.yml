@@ -19,7 +19,7 @@
     path: '{{ item.path }}'
     regexp: '{{ item.regexp }}'
     line: '{{ item.line }}'
-  with_items: '{{ line_changes }}'
+  with_items: {{ line_changes }}
 
 - name: Build app
   shell:

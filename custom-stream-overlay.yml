@@ -11,7 +11,7 @@
   vars:
     app_name: 'custom-stream-api'
     app_package: "custom_stream_api.server"
-    app_callable: "app"
+    app_callable: "socketio"
     nginx_http_port: 5000
     nginx_http_location: null
     uwsgi_sockets: true

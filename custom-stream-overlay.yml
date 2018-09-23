@@ -37,7 +37,8 @@
     line_changes:
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: '127.0.0.1',"
-        line: "API_HOST: '{{ inventory_hostname }}',"
+#        line: "API_HOST: '{{ inventory_hostname }}',"
+        line: "API_HOST: 'localhost',"
     nginx_server_name: localhost
 
   roles:

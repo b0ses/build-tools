@@ -16,7 +16,7 @@
     nginx_http_location: null
     line_changes:
       - path: 'custom_stream_api/settings.py'
-        regexp: "^\s*SECRET = ''"
+        regexp: "^\\s*SECRET = ''"
         line: "SECRET = '{{ secret_key }}'"
 
   roles:
@@ -36,7 +36,7 @@
     app_name: 'custom-stream-overlay'
     line_changes:
       - path: 'src/js/Settings.js'
-        regexp: "^\s*API_HOST: '120.0.0.1',"
+        regexp: "^\\s*API_HOST: '120.0.0.1',"
         line: "API_HOST: '{{ inventory_hostname }}',"
 
   roles:

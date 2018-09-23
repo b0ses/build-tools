@@ -15,7 +15,7 @@
     nginx_http_port: 5000
     nginx_http_location: null
     line_changes:
-      api_host:
+      secret:
         path: 'custom_stream_api/settings.py'
         regexp: "^SECRET = ''"
         line: "SECRET = '{{ secret_key }}'"

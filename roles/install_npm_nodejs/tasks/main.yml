@@ -3,7 +3,7 @@
   command: npm -v
   register: npm_check
 
-- name: install npm
+- name: Install npm
   apt:
     name: npm
     update_cache: yes

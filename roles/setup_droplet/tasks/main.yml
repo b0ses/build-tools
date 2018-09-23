@@ -12,7 +12,7 @@
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     exclusive: True
 
-- name: ensure key exists at DigitalOcean
+- name: Ensure key exists at DigitalOcean
   digital_ocean: >
     state=present
     command=ssh
@@ -21,7 +21,7 @@
     api_token={{ do_token }}
   register: jenkins_key
 
-- name: ensure droplet exists
+- name: Ensure droplet exists
   digital_ocean: >
     state=present
     command=droplet

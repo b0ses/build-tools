@@ -4,7 +4,7 @@ app_package: "{{ app_name }}.wsgi"
 app_callable: application
 base_dir: '/git/{{ app_name }}'
 appdata_dir: '{{ base_dir }}/{{ app_name }}'
-nginx_server_name: 'localhost {{ app_name }}.local'
+nginx_server_name: '{{ app_name }}.local'
 # This affects HTTP only. HTTPS requires manual config.
 # Most people want to use 80 here.
 nginx_http_port: 80

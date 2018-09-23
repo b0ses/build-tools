@@ -38,6 +38,7 @@
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: '127.0.0.1',"
         line: "API_HOST: '{{ inventory_hostname }}',"
+    nginx_server_name: localhost
 
   roles:
     - install_npm_nodejs

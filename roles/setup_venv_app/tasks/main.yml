@@ -23,3 +23,10 @@
     group: '{{ gid }}'
     state: directory
     recurse: yes
+
+- name: Configure/modify app
+  lineinfile:
+    path: '{{ item.path }}'
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+  with_items: '{{ line_changes }}'

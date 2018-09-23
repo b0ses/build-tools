@@ -14,6 +14,11 @@
     app_callable: "app"
     nginx_http_port: 5000
     nginx_http_location: null
+    line_changes:
+      api_host:
+        filename: 'custom_stream_api/settings.py'
+        regexp: "^SECRET = ''"
+        line: "SECRET = '{{ secret_key }}'"
 
   roles:
     - install_Debian_Ubuntu
@@ -30,6 +35,11 @@
 
   vars:
     app_name: 'custom-stream-overlay'
+    line_changes:
+      api_host:
+        path: 'src/js/Settings.js'
+        regexp: "^API_HOST: '120.0.0.1',"
+        line: "API_HOST: '{{ inventory_hostname }}',"
 
   roles:
     - install_npm_nodejs

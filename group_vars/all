@@ -13,6 +13,7 @@ uwsgi_module: '{{ app_package }}:{{ app_callable }}'
 uwsgi_processes: 1
 uwsgi_threads: 1
 uwsgi_sockets: false
+uwsgi_geven: 500
 uwsgi_env: []
 # Example for Django:
 # uwsgi_env:

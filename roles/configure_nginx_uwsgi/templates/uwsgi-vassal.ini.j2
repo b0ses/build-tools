@@ -12,6 +12,7 @@ processes = {{ uwsgi_processes }}
 threads = {{ uwsgi_threads }}
 plugins = {{ uwsgi_plugins }}
 logger = file:{{ base_dir }}/uwsgi.log
+http-websockets = {{ uwsgi_sockets }}
 {% for env in uwsgi_env %}
 env = {{ env }}
 {% endfor %}

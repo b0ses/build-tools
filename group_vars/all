@@ -12,6 +12,7 @@ nginx_http_location: '{{ base_dir }}/build'
 uwsgi_module: '{{ app_package }}:{{ app_callable }}'
 uwsgi_processes: 1
 uwsgi_threads: 1
+uwsgi_sockets: false
 uwsgi_env: []
 # Example for Django:
 # uwsgi_env:

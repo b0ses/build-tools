@@ -24,6 +24,11 @@
     state: directory
     recurse: yes
 
+- name: Debug
+  debug:
+    msg: '{{ item.path }} {{ item.regexp }} {{ item.line }}'
+  with_items: '{{ line_changes }}'
+
 - name: Configure/modify app
   lineinfile:
     path: '{{ item.path }}'

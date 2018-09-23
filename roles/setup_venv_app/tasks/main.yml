@@ -26,7 +26,7 @@
 
 - name: Configure/modify app
   lineinfile:
-    path: '{{ base_dir }}/{{ item.path }}'
+    path: '{{ appdata_dir }}/{{ item.path }}'
     regexp: '{{ item.regexp }}'
     line: '{{ item.line }}'
   with_items: '{{ line_changes }}'

@@ -20,5 +20,5 @@
     state: present
     update_cache: yes
 
-- name: Build app
+- name: Update nodejs
   shell: apt install nodejs -y

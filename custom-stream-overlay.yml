@@ -15,6 +15,7 @@
     nginx_http_port: 5000
     nginx_http_location: null
     uwsgi_sockets: true
+    uwsgi_threads: 5
     line_changes:
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*SECRET = ''"

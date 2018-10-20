@@ -7,7 +7,7 @@
 
 - name: Set permissions for db directory
   file:
-    path: '{{ {{ module_dir }} }}'
+    path: '{{ module_dir }}'
     mode: 770
     state: directory
     recurse: yes

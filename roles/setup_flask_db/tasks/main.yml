@@ -8,7 +8,10 @@
 - name: Set permissions for db directory
   file:
     path: '{{ module_dir }}'
-    mode: 770
+    mode: 777
     state: directory
     recurse: yes
-  chdir: '{{ appdata_dir }}'
+
+# moving back to where it was
+- shell: ''
+    chdir: '{{ appdata_dir }}'

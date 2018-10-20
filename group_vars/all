@@ -1,9 +1,11 @@
 ---
-app_name: "{{ lookup('env', 'project') }}"
-app_package: "{{ app_name }}.wsgi"
+app_name: '{{ lookup('env', 'project') }}'
+module_name: '{{ app_name | replace(" ", "_") | lower }}'
+app_package: '{{ app_name }}.wsgi'
 app_callable: application
 base_dir: '/git/{{ app_name }}'
 appdata_dir: '{{ base_dir }}/{{ app_name }}'
+module_dir: '{{ base_dir }}/{{ app_name }}/{{ module_name }}'
 nginx_server_name: '{{ app_name }}.local'
 # This affects HTTP only. HTTPS requires manual config.
 # Most people want to use 80 here.
@@ -20,11 +22,12 @@ uwsgi_env: []
 # - 'DJANGO_SETTINGS_MODULE={{ app_package }}.settings'
 git_repo: https://github.com/b0ses/{{ app_name }}
 git_branch: master
-# If this is set to "yes", the global nginx config will be replaced by one
+# If this is set to 'yes', the global nginx config will be replaced by one
 # that has no default hosts. This is based on the default config of your OS.
 # You should not use it if you customized /etc/nginx/nginx.conf in any way,
 # or if you have already used nginx before.
 nginx_hostless_global_config: no
 
-nodejs_version: "8"
-secret_key: "{{ lookup('env', 'SECRET_KEY') }}"
+nodejs_version: '8'
+secret_key: '{{ lookup('env', 'SECRET_KEY') }}'
+rebuild_db: '{{ lookup('env', 'rebuild_db') }}'

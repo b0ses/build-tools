@@ -24,6 +24,7 @@
   roles:
     - install_Debian_Ubuntu
     - setup_venv_app
+    - setup_flask_db
     - patch_config_Debian_Ubuntu
     - configure_nginx_uwsgi
     - create_service_Debian_Ubuntu

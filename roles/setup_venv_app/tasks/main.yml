@@ -3,15 +3,18 @@
   file:
     path: '{{ base_dir }}'
     state: absent
+  when: rebuild_db
 
 - name: Create a virtual environment
   command: "{{ virtualenv_cmd }} '{{ base_dir }}'"
+  when: rebuild_db
 
 - name: Clone Git repository
   git:
     repo: '{{ git_repo }}'
     dest: '{{ appdata_dir }}'
     version: '{{ git_branch }}'
+  when: rebuild_db
 
 - name: Install requirements.txt
   command: "'{{ base_dir }}/bin/pip' install -r '{{ appdata_dir }}/requirements.txt'"

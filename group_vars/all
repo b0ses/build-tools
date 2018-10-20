@@ -1,6 +1,6 @@
 ---
-app_name: '{{ lookup('env', 'project') }}'
-module_name: '{{ app_name | replace(" ", "_") | lower }}'
+app_name: "{{ lookup('env', 'project') }}"
+module_name: "{{ app_name | replace(' ', '_') | lower }}"
 app_package: '{{ app_name }}.wsgi'
 app_callable: application
 base_dir: '/git/{{ app_name }}'
@@ -29,5 +29,5 @@ git_branch: master
 nginx_hostless_global_config: no
 
 nodejs_version: '8'
-secret_key: '{{ lookup('env', 'SECRET_KEY') }}'
-rebuild_db: '{{ lookup('env', 'rebuild_db') }}'
+secret_key: "{{ lookup('env', 'SECRET_KEY') }}"
+rebuild_db: "{{ lookup('env', 'rebuild_db') }}"

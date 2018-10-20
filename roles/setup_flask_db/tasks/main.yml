@@ -1,6 +1,6 @@
 - name: Upgrade/rebuild database
   shell:
-    cmd: 'flask db upgrade head -d {{ module_dir }}/migrations'
+    cmd: "'{{ base_dir }}/bin/flask' db upgrade head -d {{ module_dir }}/migrations"
     chdir: '{{ module_dir }}'
   environment:
     FLASK_APP: server.py

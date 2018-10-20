@@ -37,6 +37,7 @@
 
   vars:
     app_name: 'custom-stream-overlay'
+    nginx_http_port: 80
     line_changes:
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
@@ -56,6 +57,7 @@
 
   vars:
     app_name: 'custom-stream-dashboard'
+    nginx_http_port: 8080
     line_changes:
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"

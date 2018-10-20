@@ -1,6 +1,3 @@
-- shell: pwd
-  register: current_cwd
-
 - name: Upgrade/rebuild database
   shell:
     cmd: "'{{ base_dir }}/bin/flask' db upgrade head -d migrations"
@@ -10,10 +7,8 @@
 
 - name: Set permissions for db directory
   file:
-    path: '{{ module_dir }}'
-    mode: 777
+    path: '{{ base_dir }}'
+    owner: '{{ uid }}'
+    group: '{{ gid }}'
     state: directory
     recurse: yes
-
-- shell:
-    cmd: 'chdir={{ current_cwd }}'

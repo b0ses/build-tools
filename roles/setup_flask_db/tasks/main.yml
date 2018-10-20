@@ -13,4 +13,5 @@
     recurse: yes
 
 - name: Moving back appdata_dir
-  command: 'chdir={{ appdata_dir }}'
+  shell:
+    cmd: 'chdir={{ appdata_dir }}'

@@ -1,3 +1,6 @@
+- shell: pwd
+  register: current_cwd
+
 - name: Upgrade/rebuild database
   shell:
     cmd: "'{{ base_dir }}/bin/flask' db upgrade head -d migrations"
@@ -12,6 +15,5 @@
     state: directory
     recurse: yes
 
-- name: Moving back appdata_dir
-  shell:
-    cmd: 'chdir={{ appdata_dir }}'
+- shell:
+    cmd: 'chdir={{ current_cwd }}'

@@ -11,3 +11,4 @@
     mode: 770
     state: directory
     recurse: yes
+  chdir: '{{ appdata_dir }}'

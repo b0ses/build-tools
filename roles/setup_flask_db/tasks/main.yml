@@ -5,7 +5,9 @@
   environment:
     FLASK_APP: server.py
 
-- name: Set permissions for database
+- name: Set permissions for db directory
   file:
-    path: '{{ module_dir }}/app.db'
-    mode: 777
+    path: '{{ {{ module_dir }} }}'
+    mode: 770
+    state: directory
+    recurse: yes

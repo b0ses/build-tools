@@ -13,5 +13,6 @@
     recurse: yes
 
 # moving back to where it was
-- shell: ''
+- shell:
+    cmd: ''
     chdir: '{{ appdata_dir }}'

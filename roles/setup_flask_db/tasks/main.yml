@@ -4,3 +4,8 @@
     chdir: '{{ module_dir }}'
   environment:
     FLASK_APP: server.py
+
+- name: Set permissions for database
+  file:
+    path: '{{ module_dir }}/app.db'
+    mode: 770

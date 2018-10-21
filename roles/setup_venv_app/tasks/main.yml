@@ -23,6 +23,7 @@
     version: '{{ git_branch }}'
     clone: no
     update: yes
+    force: yes
 
 - name: Install requirements.txt
   command: "'{{ base_dir }}/bin/pip' install -r '{{ appdata_dir }}/requirements.txt'"

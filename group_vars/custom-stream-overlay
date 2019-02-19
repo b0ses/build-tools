@@ -8,3 +8,5 @@ virtualenv_cmd: virtualenv -p /usr/bin/python3
 uwsgi_service_name: emperor.uwsgi
 # Disable the default site by removing /etc/nginx/sites-enabled/default.
 nginx_disable_default_site: yes
+domain_name: stream-tools.app
+letsencrypt_email: "{{ lookup('env', 'LETSENCRYPT_EMAIL') }}"

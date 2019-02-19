@@ -1,9 +1,11 @@
 server {
-    # for a public HTTP server:
-    listen {{nginx_http_port}};
     # for a public HTTPS server:
-    # listen 443 ssl;
-    # SSL requires extra configuration!
+    listen {{nginx_http_port}};
+    listen 443 ssl;
+    ssl_certificate         /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/{{ domain_name }}/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem;
+
     server_name {{ nginx_server_name }};
 
     {% if nginx_http_location %}
@@ -28,4 +30,11 @@ server {
         alias {{ appdata_dir }}/static/favicon.ico;
     }
     {% endif %}
+}
+
+# Redirect http->https version
+server {
+    # for a public HTTP server:
+    listen {{nginx_http_port}};
+	return 301 https://www.dictionpractice.com$request_uri;
 }

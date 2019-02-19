@@ -27,6 +27,7 @@
     - setup_flask_db
     - patch_config_Debian_Ubuntu
     - configure_nginx_uwsgi
+    - setup-ssl
     - create_service_Debian_Ubuntu
     - start_services
 
@@ -48,6 +49,7 @@
     - install_npm_nodejs
     - setup_react_app
     - configure_nginx_uwsgi
+    - setup-ssl
     - start_services
 
 - name: Configure droplet for Custom Stream Dashboard
@@ -68,4 +70,5 @@
     - install_npm_nodejs
     - setup_react_app
     - configure_nginx_uwsgi
+    - setup-ssl
     - start_services

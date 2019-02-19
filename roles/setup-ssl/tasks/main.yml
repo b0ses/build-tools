@@ -20,7 +20,7 @@
 
 - name: Install nginx site for letsencrypt requests
   template:
-    src: templates/nginx-le.j2
+    src: templates/nginx-le.conf.j2
     dest: /etc/nginx/sites-enabled/http
   when: pem_exists.stat.exists == False
 

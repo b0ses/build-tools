@@ -36,13 +36,5 @@ server {
 server {
     # for a public HTTP server:
     listen {{nginx_http_port}};
-
-    location ~ /\.well-known/acme-challenge {
-        root /var/www/letsencrypt;
-        try_files $uri $uri/ =404;
-    }
-
-    location / {
-        rewrite ^ https://{{ domain_name }}$request_uri? permanent;
-    }
+	return 301 https://$host$request_uri;
 }

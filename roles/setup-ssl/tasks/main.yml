@@ -18,7 +18,7 @@
     creates: /etc/letsencrypt/live/{{ domain_name }}
   when: pem_exists.stat.exists == False
 
- - name: Add letsencrypt cronjob for cert renewal
+- name: Add letsencrypt cronjob for cert renewal
   cron:
     name: letsencrypt_renewal
     special_time: weekly

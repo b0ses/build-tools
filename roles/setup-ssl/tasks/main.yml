@@ -20,12 +20,6 @@
     path: /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem
   register: pem_exists
 
-- name: Remove default nginx config
-  file:
-    name: /etc/nginx/sites-enabled/default
-    state: absent
-  when: pem_exists.stat.exists == False
-
 - name: Install nginx site for letsencrypt requests
   template:
     src: templates/nginx-le.conf.j2

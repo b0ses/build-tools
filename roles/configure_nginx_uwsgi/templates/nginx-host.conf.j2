@@ -36,5 +36,10 @@ server {
 server {
     # for a public HTTP server:
     listen {{nginx_http_port}};
-	return 301 https://www.dictionpractice.com$request_uri;
+
+    location ~ /\.well-known/acme-challenge {
+        root /usr/share/nginx/html;
+    }
+
+    return 301 https://www.dictionpractice.com$request_uri;
 }

@@ -13,7 +13,7 @@
   copy:
     src: /var/www/html/index.nginx-debian.html
     dest: /var/www/letsencrypt/index.html
-    remote_src: yes
+    remote_src: no
 
 - name: Check that the pem exists
   stat:

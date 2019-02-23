@@ -28,5 +28,5 @@
 
 - name: Ensure letsencrypt directory exists
   file:
-    name: {{ ssl_dir }}
+    name: '{{ ssl_dir }}'
     state: directory

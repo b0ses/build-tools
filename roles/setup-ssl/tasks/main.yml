@@ -6,7 +6,7 @@
 
 - name: ensure letsencrypt directory exists
   file:
-    name: {{ ssl_dir }}
+    name: '{{ ssl_dir }}'
     state: directory
 
 - name: Check that the pem exists

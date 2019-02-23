@@ -25,8 +25,3 @@
     owner: root
     group: root
     mode: 0644
-
-- name: Ensure letsencrypt directory exists
-  file:
-    name: '{{ ssl_dir }}'
-    state: directory

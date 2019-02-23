@@ -36,11 +36,11 @@
 
 - debug: msg="IP is {{ current_droplet.droplet.ip_address }}"
 
-#- name: Adding domain for droplet
-#  digital_ocean_domain:
-#    state: present
-#    name: "{{ domain_name }}"
-#    ip: "{{ current_droplet.droplet.ip_address }}"
+- name: Adding domain for droplet
+  digital_ocean_domain:
+    state: present
+    name: "{{ domain_name }}"
+    ip: "{{ current_droplet.droplet.ip_address }}"
 
 - name: Add new droplet to host group
   local_action: add_host hostname={{ current_droplet.droplet.ip_address }} groupname={{ app_name }}

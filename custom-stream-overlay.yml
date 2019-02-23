@@ -26,10 +26,10 @@
     - setup_venv_app
     - setup_flask_db
     - patch_config_Debian_Ubuntu
-    - setup-ssl
     - configure_nginx_uwsgi
     - create_service_Debian_Ubuntu
     - start_services
+    - setup-ssl
 
 - name: Configure droplet for Custom Stream Overlay
   hosts: custom-stream-overlay
@@ -51,6 +51,7 @@
     - setup-ssl
     - configure_nginx_uwsgi
     - start_services
+    - setup-ssl
 
 - name: Configure droplet for Custom Stream Dashboard
   hosts: custom-stream-overlay
@@ -72,3 +73,4 @@
     - setup-ssl
     - configure_nginx_uwsgi
     - start_services
+    - setup-ssl

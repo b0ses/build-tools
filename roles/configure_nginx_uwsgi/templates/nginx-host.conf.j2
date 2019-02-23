@@ -36,5 +36,11 @@ server {
 server {
     # for a public HTTP server:
     listen {{nginx_http_port}};
-	return 301 https://$host$request_uri;
+
+    location /.well-known/acme-challenge {
+        root {{ ssl_dir }};
+        try_files $uri $uri/ =404;
+    }
+
+    return 301 https://$host$request_uri;
 }

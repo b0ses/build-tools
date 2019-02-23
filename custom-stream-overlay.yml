@@ -21,7 +21,6 @@
     - install_Debian_Ubuntu
     - install_npm_nodejs
     - setup_react_app
-    - setup-ssl
     - configure_nginx_uwsgi
     - setup-ssl
     - start_services
@@ -50,8 +49,8 @@
     - setup_flask_db
     - patch_config_Debian_Ubuntu
     - configure_nginx_uwsgi
-    - create_service_Debian_Ubuntu
     - setup-ssl
+    - create_service_Debian_Ubuntu
     - start_services
 
 - name: Configure droplet for Custom Stream Dashboard

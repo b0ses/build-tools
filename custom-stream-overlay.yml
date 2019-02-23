@@ -18,6 +18,7 @@
     nginx_server_name: localhost
 
   roles:
+    - install_Debian_Ubuntu
     - install_npm_nodejs
     - setup_react_app
     - setup-ssl
@@ -68,6 +69,7 @@
     nginx_server_name: localhost
 
   roles:
+    - install_Debian_Ubuntu
     - install_npm_nodejs
     - setup_react_app
     - configure_nginx_uwsgi

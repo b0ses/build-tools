@@ -26,7 +26,7 @@
     - setup_venv_app
     - setup_flask_db
     - patch_config_Debian_Ubuntu
-#    - setup-ssl
+    - setup-ssl
     - configure_nginx_uwsgi
     - create_service_Debian_Ubuntu
     - start_services
@@ -48,7 +48,7 @@
   roles:
     - install_npm_nodejs
     - setup_react_app
-#    - setup-ssl
+    - setup-ssl
     - configure_nginx_uwsgi
     - start_services
 
@@ -69,6 +69,6 @@
   roles:
     - install_npm_nodejs
     - setup_react_app
-#    - setup-ssl
+    - setup-ssl
     - configure_nginx_uwsgi
     - start_services

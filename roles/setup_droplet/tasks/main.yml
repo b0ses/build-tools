@@ -48,5 +48,5 @@
 - name: Wait for SSH to come up
   local_action: wait_for host={{ current_droplet.droplet.ip_address }} port=22 timeout=320 state=started
 
-- name: Wait for domain to be setup to come up
+- name: Wait for domain to come up
   local_action: wait_for host={{ domain_name }} port=22 timeout=320 state=started

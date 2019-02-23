@@ -14,6 +14,12 @@
     path: /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem
   register: pem_exists
 
+- name: Reload nginx to activate letsencrypt site
+  service:
+    name: nginx
+    state: restarted
+  when: pem_exists.stat.exists == False
+
 - name: Create letsencrypt certificate
   shell: letsencrypt certonly -n --webroot -w {{ ssl_dir }} -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }}
   args:

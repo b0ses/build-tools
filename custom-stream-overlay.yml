@@ -14,7 +14,7 @@
     line_changes:
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
-        line: "API_HOST: '{{ domain_hostname }}',"
+        line: "API_HOST: '{{ domain_name }}',"
     nginx_server_name: 'custom-stream-overlay'
 
   roles:

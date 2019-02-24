@@ -1,0 +1,8 @@
+
+- name: Create uWSGI config
+  template:
+    src: templates/uwsgi-vassal.ini.j2
+    dest: '{{ uwsgi_dir }}/{{ app_name }}.ini'
+    owner: root
+    group: root
+    mode: 0644

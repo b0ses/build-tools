@@ -18,11 +18,10 @@
     nginx_server_name: localhost
 
   roles:
-    - install_Debian_Ubuntu
-    - install_npm_nodejs
+    - install_react_app_deps
     - setup_react_app
-    - configure_nginx_uwsgi
-    - start_services
+    - configure_nginx
+    - start_nginx
     - setup-ssl
 
 - name: Configure droplet for Custom Stream API
@@ -44,13 +43,15 @@
         line: "SECRET = '{{ secret_key }}'"
 
   roles:
-    - install_Debian_Ubuntu
+    - install_web_app_packages
     - setup_venv_app
     - setup_flask_db
     - patch_config_Debian_Ubuntu
-    - configure_nginx_uwsgi
+    - configure_nginx
+    - configure_uwsgi
     - create_service_Debian_Ubuntu
-    - start_services
+    - start_uwsgi
+    - start_nginx
     - setup-ssl
 
 - name: Configure droplet for Custom Stream Dashboard
@@ -68,9 +69,8 @@
     nginx_server_name: localhost
 
   roles:
-    - install_Debian_Ubuntu
-    - install_npm_nodejs
+    - install_react_app_deps
     - setup_react_app
-    - configure_nginx_uwsgi
-    - start_services
+    - configure_nginx
+    - start_nginx
     - setup-ssl

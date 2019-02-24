@@ -24,6 +24,7 @@
     - configure_nginx
     - start_nginx
     - setup-ssl
+    - start_nginx
 
 - name: Configure droplet for Custom Stream API
   hosts: custom-stream-overlay
@@ -54,6 +55,7 @@
     - start_uwsgi
     - start_nginx
     - setup-ssl
+    - start_nginx
 
 - name: Configure droplet for Custom Stream Dashboard
   hosts: custom-stream-overlay
@@ -76,3 +78,4 @@
     - patch_config_Debian_Ubuntu
     - start_nginx
     - setup-ssl
+    - start_nginx

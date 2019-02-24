@@ -15,7 +15,6 @@ server {
 
     {% if nginx_http_location %}
     location / {
-        return 404 "TEST";
         add_header 'Access-Control-Allow-Origin' '*';
         root {{ nginx_http_location }};
     }

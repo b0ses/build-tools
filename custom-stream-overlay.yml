@@ -15,7 +15,7 @@
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
         line: "API_HOST: '{{ inventory_hostname }}',"
-    nginx_server_name: localhost
+    nginx_server_name: 'custom-stream-overlay'
 
   roles:
     - install_react_app_deps
@@ -37,6 +37,7 @@
     app_callable: "app"
     nginx_http_port: 5000
     nginx_http_location: null
+    nginx_server_name: 'custom-stream-api'
     uwsgi_sockets: true
     uwsgi_threads: 5
     line_changes:
@@ -69,7 +70,7 @@
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
         line: "API_HOST: 'http://{{ inventory_hostname }}',"
-    nginx_server_name: localhost
+    nginx_server_name: 'custom-stream-dashboard'
 
   roles:
     - install_react_app_deps

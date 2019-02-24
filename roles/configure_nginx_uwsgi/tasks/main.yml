@@ -12,7 +12,7 @@
 
 - name: Create nginx config
   template:
-    src: templates/nginx-host.conf.j2
+    src: templates/nginx-http.conf.j2
     dest: '{{ nginx_dir }}/{{ app_name }}.conf'
     owner: root
     group: root
@@ -25,3 +25,8 @@
     owner: root
     group: root
     mode: 0644
+
+- name: ensure letsencrypt directory exists for future ssl
+  file:
+    name: '{{ ssl_dir }}'
+    state: directory

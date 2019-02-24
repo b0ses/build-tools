@@ -1,0 +1,35 @@
+server {
+    # for a public HTTP server:
+    listen {{nginx_http_port}};
+
+    server_name {{ nginx_server_name }};
+
+    {% if nginx_http_location %}
+    location / {
+        root {{ nginx_http_location }};
+    }
+    {% else %}
+    location / {
+        include uwsgi_params;
+        uwsgi_pass unix:{{ base_dir }}/uwsgi.sock;
+    }
+    location /socket.io {
+        include uwsgi_params;
+        uwsgi_pass unix:{{ base_dir }}/uwsgi.sock;
+    }
+
+    location /static {
+        alias {{ appdata_dir }}/static;
+    }
+
+    location /favicon.ico {
+        alias {{ appdata_dir }}/static/favicon.ico;
+    }
+    {% endif %}
+
+    # For possible ssl directory
+    location /.well-known/acme-challenge {
+        root {{ ssl_dir }};
+        try_files $uri $uri/ =404;
+    }
+}

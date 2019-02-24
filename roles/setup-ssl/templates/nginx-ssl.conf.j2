@@ -1,9 +1,9 @@
 server {
     # for a public HTTPS server:
-    listen 443 ssl;
     {% if nginx_http_port != 80 %}
     listen {{nginx_http_port}} ssl;
     {% else %}
+    listen 443 ssl;
     {% endif %}
     ssl_certificate         /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem;
     ssl_certificate_key     /etc/letsencrypt/live/{{ domain_name }}/privkey.pem;

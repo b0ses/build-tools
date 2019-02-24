@@ -43,6 +43,18 @@
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*SECRET = ''"
         line: "SECRET = '{{ secret_key }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*USERNAME = ''"
+        line: "USERNAME = '{{ chatbot_name }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*CLIENT_ID = ''"
+        line: "CLIENT_ID = '{{ chatbot_client_id }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*TOKEN = ''"
+        line: "TOKEN = '{{ chat_token }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*CHANNEL = ''"
+        line: "CHANNEL = '{{ channel }}'"
 
   roles:
     - install_web_app_packages

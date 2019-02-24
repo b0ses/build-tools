@@ -9,3 +9,7 @@ uwsgi_service_name: emperor.uwsgi
 # Disable the default site by removing /etc/nginx/sites-enabled/default.
 nginx_disable_default_site: yes
 letsencrypt_email: "{{ lookup('env', 'LETSENCRYPT_EMAIL') }}"
+chatbot_name: "{{ lookup('env', 'CHAT_USERNAME') }}"
+chatbot_client_id: "{{ lookup('env', 'CHAT_CLIENT_ID') }}"
+chat_token: "{{ lookup('env', 'CHAT_TOKEN') }}"
+channel: "{{ lookup('env', 'CHANNEL') }}"

@@ -36,6 +36,11 @@ server {
         alias {{ appdata_dir }}/static/favicon.ico;
     }
     {% endif %}
+
+    location /.well-known/acme-challenge {
+        root {{ ssl_dir }};
+        try_files $uri $uri/ =404;
+    }
 }
 
 # Redirect http->https version

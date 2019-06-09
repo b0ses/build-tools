@@ -24,7 +24,7 @@
   cron:
     name: letsencrypt_renewal
     special_time: weekly
-    job: letsencrypt --renew certonly -n --webroot -w {{ ssl_dir }} -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }} && service nginx reload
+    job: letsencrypt --keep-until-expiring certonly -n --webroot -w {{ ssl_dir }} -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }} && service nginx reload
   when: pem_exists.stat.exists == False
 
 - name: Update nginx for ssl

@@ -53,5 +53,9 @@ server {
         try_files $uri $uri/ =404;
     }
 
+    {% if nginx_http_port != 80 %}
     return 301 https://$host:{{nginx_http_port}}$request_uri;
+    {% else %}
+    return 301 https://$host$request_uri;
+    {% endif %}
 }

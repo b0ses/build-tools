@@ -10,6 +10,15 @@
     dest: '{{ base_dir }}'
     version: '{{ git_branch }}'
 
+- name: Update Git repository
+  git:
+    repo: '{{ git_repo }}'
+    dest: '{{ base_dir }}'
+    version: '{{ git_branch }}'
+    clone: no
+    update: yes
+    force: yes
+
 - name: Install packages based on package.json
   npm:
     path: '{{ base_dir }}'

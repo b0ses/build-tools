@@ -17,7 +17,7 @@
     owner: root
     group: root
     mode: 0644
-    force: true
+    force: yes
 
 - name: ensure letsencrypt directory exists for future ssl
   file:

@@ -34,7 +34,7 @@
     owner: root
     group: root
     mode: 0644
-    force: true
+    force: yes
 
 - name: Restart nginx
   systemd:

@@ -18,6 +18,7 @@
     nginx_server_name: 'custom-stream-overlay'
 
   roles:
+    - reset_nginx
     - install_react_app_deps
     - setup_react_app
     - patch_config_Debian_Ubuntu

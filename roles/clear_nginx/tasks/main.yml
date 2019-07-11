@@ -1,0 +1,9 @@
+---
+- name: Stop nginx service (if running)
+  systemd:
+    name: nginx
+    state: stopped
+
+
+- name: Clear out all nginx configs (if they exist)
+  shell: /bin/rm -rf {{ nginx_dir }}/*

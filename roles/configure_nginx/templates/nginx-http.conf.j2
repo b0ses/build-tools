@@ -20,7 +20,7 @@ server {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_set_header Host $host;
-        proxy_pass http://$host:{{nginx_http_port}}$request_uri;
+        proxy_pass http://unix://{{ base_dir }}/uwsgi-http.sock;
     }
 
     location /static {

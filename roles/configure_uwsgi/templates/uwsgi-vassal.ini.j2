@@ -1,5 +1,5 @@
 [uwsgi]
-fast-cgi-socket = {{ base_dir }}/uwsgi.sock
+http-socket = {{ base_dir }}/uwsgi.sock
 chmod-socket = 775
 chdir = {{ appdata_dir }}
 master = true

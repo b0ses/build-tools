@@ -29,7 +29,7 @@ server {
         proxy_buffering off;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "Upgrade";
-        uwsgi_pass unix:{{ base_dir }}/uwsgi.sock;
+        uwsgi_pass http://unix:{{ base_dir }}/uwsgi.sock;
     }
 
     location /static {

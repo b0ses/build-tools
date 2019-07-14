@@ -13,7 +13,6 @@ threads = {{ uwsgi_threads }}
 plugins = {{ uwsgi_plugins }}
 logger = file:{{ base_dir }}/uwsgi.log
 http-websockets = {{ uwsgi_sockets|lower }}
-gevent = {{ uwsgi_gevent }}
 vacuum = true
 
 {% for env in uwsgi_env %}

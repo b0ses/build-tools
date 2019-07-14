@@ -4,8 +4,6 @@
     path: /etc/init.d/nginx
   register: service_status
 
-- debug: msg="nginx is {{ service_status.stat.exists }}"
-
 - name: Stop nginx service (if running)
   systemd:
     name: nginx

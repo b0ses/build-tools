@@ -1,11 +1,12 @@
 ---
-- name: Check if nginx exists
-  stat:
-    path: /etc/init.d/nginx
+- name: Check if nginx is running
+  command: systemctl status nginx
+  ignore_errors: yes
+  changed_when: false
   register: service_status
 
 - name: Stop nginx service (if running)
-  service:
+  systemd:
     name: nginx
     state: stopped
   when: service_status

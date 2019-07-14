@@ -4,15 +4,15 @@
     path: /etc/init.d/nginx
   register: service_status
 
-- debug: msg="nginx is {{ service_status }}"
+- debug: msg="nginx is {{ service_status.stat.exists }}"
 
 - name: Stop nginx service (if running)
   systemd:
     name: nginx
     state: stopped
-  when: service_status
+  when: service_status.stat.exists
 
 
 - name: Clear out all nginx configs (if they exist)
   shell: /bin/rm -rf {{ nginx_dir }}/*
-  when: service_status
+  when: service_status.stat.exists

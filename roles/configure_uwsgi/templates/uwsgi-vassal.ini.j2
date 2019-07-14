@@ -1,6 +1,5 @@
 [uwsgi]
 socket = {{ base_dir }}/uwsgi.sock
-http-socket = {{ base_dir }}/uwsgi-http.sock
 chmod-socket = 775
 chdir = {{ appdata_dir }}
 master = true

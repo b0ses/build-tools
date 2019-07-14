@@ -38,7 +38,7 @@
     nginx_http_port: 5000
     nginx_http_location: null
     nginx_server_name: 'custom-stream-api'
-    uwsgi_sockets: true
+    uwsgi_sockets: false
     uwsgi_threads: 10
     line_changes:
       - path: 'custom_stream_api/settings.py'

@@ -93,6 +93,9 @@
       - path: 'src/js/Settings.js'
         regexp: "^\\s*REDIRECT_URI: ''"
         line: "REDIRECT_URI: 'https://{{ domain_name }}:8080/auth'"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*LOGIN: false,"
+        line: "LOGIN: {{ login_required }},"
     nginx_server_name: 'custom-stream-dashboard'
 
   roles:

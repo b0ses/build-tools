@@ -67,7 +67,7 @@
         line: "OVERLAY_PORT = None"
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*LOGIN = False"
-        line: "LOGIN = {{ login_required }}"
+        line: "LOGIN = {{ login_required | capitalize }}"
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*CLIENT_ID = ''"
         line: "CLIENT_ID = '{{ client_id }}'"

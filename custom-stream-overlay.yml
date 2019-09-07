@@ -59,6 +59,24 @@
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*CHANNEL = ''"
         line: "CHANNEL = '{{ channel }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*DASHBOARD_PORT = 8080"
+        line: "DASHBOARD_PORT = 8080"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*OVERLAY_PORT = None"
+        line: "OVERLAY_PORT = None"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*LOGIN = False"
+        line: "LOGIN = {{ login_required }}"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*CLIENT_ID = ''"
+        line: "CLIENT_ID = '{{ client_id }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*CLIENT_SECRET = ''"
+        line: "CLIENT_SECRET = '{{ client_secret }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*REDIRECT_URI = ''"
+        line: "REDIRECT_URI = 'https://{{ domain_name }}:8080/auth'"
 
   roles:
     - install_web_app_packages

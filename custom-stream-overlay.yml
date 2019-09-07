@@ -48,9 +48,6 @@
         regexp: "^\\s*PORT = 5000"
         line: "PORT = 5000"
       - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*HOST = '127.0.0.1'"
-        line: "HOST = '127.0.0.1'"
-      - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*DASHBOARD_PORT = 8080"
         line: "DASHBOARD_PORT = 8080"
       - path: 'custom_stream_api/settings.py'

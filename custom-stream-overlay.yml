@@ -109,11 +109,8 @@
         regexp: "^\\s*CLIENT_ID: '',"
         line: "CLIENT_ID: '{{ client_id }}',"
       - path: 'src/js/Settings.js'
-        regexp: "^\\s*CLIENT_SECRET: '',"
-        line: "CLIENT_SECRET: '{{ client_secret }}',"
-      - path: 'src/js/Settings.js'
-        regexp: "^\\s*REDIRECT_URI: ''"
-        line: "REDIRECT_URI: 'https://{{ domain_name }}:8080/auth'"
+        regexp: "^\\s*REDIRECT_URI: '',"
+        line: "REDIRECT_URI: 'https://{{ domain_name }}:8080/auth',"
       - path: 'src/js/Settings.js'
         regexp: "^\\s*LOGIN: false,"
         line: "LOGIN: {{ login_required }},"

@@ -19,6 +19,10 @@
     update: yes
     force: yes
 
+- name: Clearing npm cache
+  shell:
+    cmd: npm cache clean --force
+
 - name: Install packages based on package.json
   npm:
     path: '{{ base_dir }}'

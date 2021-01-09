@@ -83,6 +83,15 @@
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*REDIRECT_URI = ''"
         line: "REDIRECT_URI = 'https://{{ domain_name }}:8080/auth'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*LIGHTS_IP = None"
+        line: "LIGHTS_IP = '{{ lights_ip }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*LIGHTS_IP = None"
+        line: "LIGHTS_USER = '{{ lights_user }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*GROUP_NUMBER = None"
+        line: "GROUP_NUMBER = '{{ group_number }}'"
 
   roles:
     - install_web_app_packages

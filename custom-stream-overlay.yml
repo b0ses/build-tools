@@ -133,10 +133,10 @@
         regexp: "^\\s*LOGIN: false,"
         line: "LOGIN: {{ login_required }},"
       - path: 'src/js/Settings.js'
-        regexp: "^\\s*CLIENT_ID: '',"
+        regexp: "^\\s*TWITCH_CLIENT_ID: '',"
         line: "TWITCH_CLIENT_ID: '{{ twitch_client_id }}',"
       - path: 'src/js/Settings.js'
-        regexp: "^\\s*REDIRECT_URI: '',"
+        regexp: "^\\s*TWITCH_REDIRECT_URI: '',"
         line: "TWITCH_REDIRECT_URI: 'https://{{ domain_name }}:8080/twitch_auth',"
 
       - path: 'src/js/Settings.js'

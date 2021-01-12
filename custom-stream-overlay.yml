@@ -66,32 +66,43 @@
         regexp: "^\\s*USERNAME = ''"
         line: "USERNAME = '{{ chatbot_name }}'"
       - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*CLIENT_ID = ''"
-        line: "CLIENT_ID = '{{ chatbot_client_id }}'"
-      - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*TOKEN = ''"
         line: "TOKEN = '{{ chat_token }}'"
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*CHANNEL = ''"
         line: "CHANNEL = '{{ channel }}'"
+
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*LOGIN = False"
-        line: "LOGIN = {{ login_required | capitalize }}"
+        line: "TWITCH_LOGIN = {{ login_required | capitalize }}"
       - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*CLIENT_SECRET = ''"
-        line: "CLIENT_SECRET = '{{ client_secret }}'"
+        regexp: "^\\s*TWITCH_CLIENT_ID = ''"
+        line: "TWITCH_CLIENT_ID = '{{ twitch_client_id }}'"
       - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*REDIRECT_URI = ''"
-        line: "REDIRECT_URI = 'https://{{ domain_name }}:8080/auth'"
+        regexp: "^\\s*TWITCH_CLIENT_SECRET = ''"
+        line: "TWITCH_CLIENT_SECRET = '{{ twitch_client_secret }}'"
       - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*LIGHTS_IP = None"
-        line: "LIGHTS_IP = '{{ lights_ip }}'"
+        regexp: "^\\s*TWITCH_REDIRECT_URI = ''"
+        line: "TWITCH_REDIRECT_URI = 'https://{{ domain_name }}:8080/twitch_auth'"
+
       - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*LIGHTS_IP = None"
-        line: "LIGHTS_USER = '{{ lights_user }}'"
+        regexp: "^\\s*LIGHTS_LOCAL = True"
+        line: "LIGHTS_LOCAL = False"
       - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*GROUP_NUMBER = None"
-        line: "GROUP_NUMBER = '{{ group_number }}'"
+        regexp: "^\\s*HUE_APP_NAME = ''"
+        line: "HUE_APP_NAME = '{{ hue_app_name }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*HUE_CLIENT_ID = ''"
+        line: "HUE_CLIENT_ID = '{{ hue_client_id }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*TWITCH_CLIENT_SECRET = ''"
+        line: "HUE_CLIENT_SECRET = '{{ hue_client_secret }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*HUE_REDIRECT_URI = ''"
+        line: "HUE_REDIRECT_URI = 'https://{{ domain_name }}:8080/hue_auth'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*HUE_GROUP_NUMBER = 1"
+        line: "HUE_GROUP_NUMBER = {{ hue_group_number }}"
 
   roles:
     - install_web_app_packages

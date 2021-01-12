@@ -130,7 +130,7 @@
         line: "API_HOST: 'https://{{ domain_name }}',"
 
       - path: 'src/js/Settings.js'
-        regexp: "^\\s*LOGIN: false,"
+        regexp: "^\\s*LOGIN: true,"
         line: "LOGIN: {{ login_required }},"
       - path: 'src/js/Settings.js'
         regexp: "^\\s*TWITCH_CLIENT_ID: '',"
@@ -143,8 +143,11 @@
         regexp: "^\\s*HUE_CLIENT_ID: '',"
         line: "HUE_CLIENT_ID: '{{ hue_client_id }}',"
       - path: 'src/js/Settings.js'
-        regexp: "^\\s*HUE_REDIRECT_URI: '',"
-        line: "HUE_REDIRECT_URI: 'https://{{ domain_name }}:8080/hue_auth',"
+        regexp: "^\\s*HUE_APP_ID: '',"
+        line: "HUE_APP_ID: '{{ hue_app_name }}',"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*HUE_DEVICE_ID: '',"
+        line: "HUE_DEVICE_ID: '{{ hue_app_name }}-id',"
 
     nginx_server_name: 'custom-stream-dashboard'
 

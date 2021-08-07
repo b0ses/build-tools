@@ -4,6 +4,12 @@
     name: letsencrypt
     state: latest
 
+- name: update/upgrade letsencrypt
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+
 - name: ensure letsencrypt directory exists
   file:
     name: '{{ ssl_dir }}'

@@ -25,11 +25,10 @@
     update: yes
     force: yes
 
-- name: Update pip
-  command: "python3 -m pip install --upgrade pip"
-
 - name: Install requirements.txt
-  command: "pip install -r '{{ appdata_dir }}/requirements.txt'"
+  pip:
+    requirements: '{{ appdata_dir }}/requirements.txt'
+    virtualenv: "{{ base_dir }}"
 
 - name: Set permissions for base directory
   file:

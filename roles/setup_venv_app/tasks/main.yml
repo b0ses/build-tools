@@ -26,10 +26,10 @@
     force: yes
 
 - name: Update pip
-  command: "'{{ base_dir }}/bin/pip' install --upgrade pip"
+  command: "python3 -m pip install --upgrade pip"
 
 - name: Install requirements.txt
-  command: "'{{ base_dir }}/bin/pip' install -r '{{ appdata_dir }}/requirements.txt'"
+  command: "pip3 install -r '{{ appdata_dir }}/requirements.txt'"
 
 - name: Set permissions for base directory
   file:

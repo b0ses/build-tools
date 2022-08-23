@@ -13,7 +13,7 @@
 
 - name: retry if needed using command apt-get update
   command: apt-get update
-  when: apt_result|failed
+  when: apt_result
 
 - name: Check if npm is installed
   command: npm -v

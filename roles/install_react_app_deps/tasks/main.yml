@@ -8,9 +8,9 @@
 - name: apt update
   apt:
     update_cache: yes
+    lock_timeout: 600
   register: apt_result
   ignore_errors: yes
-  lock_timeout: 600
 
 - name: retry if needed using command apt-get update
   command: apt-get update

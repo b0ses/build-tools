@@ -16,6 +16,12 @@
     version: '{{ git_branch }}'
   when: rebuild_db
 
+- name: Add directory to the safe config
+  git_config:
+    name: safe.directory
+    value: '{{ appdata_dir }}'
+    scope: global
+
 - name: Update Git repository
   git:
     repo: '{{ git_repo }}'

@@ -9,7 +9,6 @@
   apt:
     update_cache: yes
   register: apt_result
-  sudo: yes
   ignore_errors: yes
 
 - name: retry if needed using command apt-get update

@@ -13,7 +13,6 @@
 
 - name: retry if needed using command apt-get update
   command: apt-get update
-  sudo: yes
   when: apt_result|failed
 
 - name: Check if npm is installed

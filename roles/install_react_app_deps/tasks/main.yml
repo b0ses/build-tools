@@ -13,7 +13,6 @@
 
 - name: retry if needed using command apt-get update
   command: apt-get update
-  when: apt_result
 
 - name: Check if npm is installed
   command: npm -v
@@ -24,7 +23,6 @@
   apt:
     name: npm
     update_cache: yes
-  when: npm_check.rc == 2
 
 - name: Install the gpg key for nodejs LTS
   apt_key:

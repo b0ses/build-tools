@@ -20,8 +20,6 @@
     oauth_token={{ do_token }}
   register: jenkins_key
 
-- debug: msg="key is {{ jenkins_key }}"
-
 - name: Ensure droplet exists
   digital_ocean_droplet: >
     state=present
@@ -31,7 +29,7 @@
     size=1gb
     region=nyc1
     image=ubuntu-18-04-x64
-    ssh_keys=[{{ jenkins_key.ssh_key.id }}]
+    ssh_keys=[{{ jenkins_key.data.ssh_key.id }}]
     oauth_token={{ do_token }}
   register: current_droplet
 

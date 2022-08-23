@@ -13,9 +13,8 @@
     exclusive: True
 
 - name: Ensure key exists at DigitalOcean
-  digital_ocean_droplet: >
+  digital_ocean_sshkey: >
     state=present
-    command=ssh
     name=jenkins-key
     ssh_pub_key={{ lookup('file', '~/.ssh/id_rsa.pub') }}
     oauth_token={{ do_token }}

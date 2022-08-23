@@ -13,6 +13,7 @@
 
 - name: retry if needed using command apt-get update
   command: apt-get update
+  lock_timeout: 600
 
 - name: Remove dependencies that are no longer required
   apt:

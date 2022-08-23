@@ -20,6 +20,8 @@
     oauth_token={{ do_token }}
   register: jenkins_key
 
+- debug: msg="key is {{ jenkins_key }}"
+
 - name: Ensure droplet exists
   digital_ocean_droplet: >
     state=present

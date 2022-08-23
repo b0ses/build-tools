@@ -10,10 +10,14 @@
     update_cache: yes
   register: apt_result
   ignore_errors: yes
+  lock_timeout: 600
 
 - name: retry if needed using command apt-get update
   command: apt-get update
-  lock_timeout: 600
+
+- name: Sleep for 10 minutes
+  wait_for:
+    timeout: 600
 
 - name: Remove dependencies that are no longer required
   apt:

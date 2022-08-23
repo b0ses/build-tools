@@ -23,7 +23,6 @@
 - name: Ensure droplet exists
   digital_ocean_droplet: >
     state=present
-    command=droplet
     name={{ app_name }}
     unique_name=yes
     size=1gb

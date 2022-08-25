@@ -5,24 +5,6 @@
     state: present
     update_cache: yes
 
-- name: apt update
-  apt:
-    update_cache: yes
-    lock_timeout: 600
-  register: apt_result
-  ignore_errors: yes
-
-- name: retry if needed using command apt-get update
-  command: apt-get update
-
-- name: Sleep for 10 minutes
-  wait_for:
-    timeout: 600
-
-- name: Remove dependencies that are no longer required
-  apt:
-    autoremove: yes
-
 - name: Check if npm is installed
   command: npm -v
   register: npm_check
@@ -32,17 +14,21 @@
   apt:
     name: npm
     update_cache: yes
+  when: npm_check|bool == False
 
 - name: Install the gpg key for nodejs LTS
   apt_key:
     url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
     state: present
+  when: npm_check|bool == False
 
 - name: Install the nodejs LTS repos
   apt_repository:
     repo: "deb https://deb.nodesource.com/node_{{ nodejs_version }}.x {{ ansible_distribution_release }} main"
     state: present
     update_cache: yes
+  when: npm_check|bool == False
 
 - name: Update nodejs
   shell: apt install nodejs -y
+  when: npm_check|bool == False

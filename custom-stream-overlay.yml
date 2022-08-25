@@ -22,10 +22,10 @@
     line_changes:
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
-        line: "API_HOST: 'https://{{ domain_name }}',"
+        line: "  API_HOST: 'https://{{ domain_name }}',"
       - path: 'src/js/Settings.js'
         regexp: "^\\s*CUTOFF: .*"
-        line: "CUTOFF: {{ cutoff }}"
+        line: "  CUTOFF: {{ cutoff }}"
     nginx_server_name: 'custom-stream-overlay'
 
   roles:
@@ -135,27 +135,27 @@
     line_changes:
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
-        line: "API_HOST: 'https://{{ domain_name }}',"
+        line: "  API_HOST: 'https://{{ domain_name }}',"
 
       - path: 'src/js/Settings.js'
         regexp: "^\\s*LOGIN: true,"
-        line: "LOGIN: {{ login_required }},"
+        line: "  LOGIN: {{ login_required }},"
       - path: 'src/js/Settings.js'
         regexp: "^\\s*TWITCH_CLIENT_ID: '',"
-        line: "TWITCH_CLIENT_ID: '{{ twitch_client_id }}',"
+        line: "  TWITCH_CLIENT_ID: '{{ twitch_client_id }}',"
       - path: 'src/js/Settings.js'
         regexp: "^\\s*TWITCH_REDIRECT_URI: '',"
-        line: "TWITCH_REDIRECT_URI: 'https://{{ domain_name }}:8080/twitch_auth',"
+        line: "  TWITCH_REDIRECT_URI: 'https://{{ domain_name }}:8080/twitch_auth',"
 
       - path: 'src/js/Settings.js'
         regexp: "^\\s*HUE_CLIENT_ID: '',"
-        line: "HUE_CLIENT_ID: '{{ hue_client_id }}',"
+        line: "  HUE_CLIENT_ID: '{{ hue_client_id }}',"
       - path: 'src/js/Settings.js'
         regexp: "^\\s*HUE_APP_ID: '',"
-        line: "HUE_APP_ID: '{{ hue_app_name }}',"
+        line: "  HUE_APP_ID: '{{ hue_app_name }}',"
       - path: 'src/js/Settings.js'
         regexp: "^\\s*HUE_DEVICE_ID: '',"
-        line: "HUE_DEVICE_ID: '{{ hue_app_name }}-id',"
+        line: "  HUE_DEVICE_ID: '{{ hue_app_name }}-id',"
 
     nginx_server_name: 'custom-stream-dashboard'
 

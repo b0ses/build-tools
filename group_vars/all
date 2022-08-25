@@ -29,7 +29,7 @@ git_branch: master
 # or if you have already used nginx before.
 nginx_hostless_global_config: no
 
-nodejs_version: '16.17.0'
+nodejs_version: '16'
 secret_key: "{{ lookup('env', 'SECRET_KEY') }}"
 rebuild_db: "{{ lookup('env', 'rebuild_db') }}"
 domain_name: "{{ lookup('env', 'DOMAIN_NAME') }}"

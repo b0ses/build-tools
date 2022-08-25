@@ -4,6 +4,14 @@
     - setup_droplet
     - update_apt
 
+- name: Update droplet
+  hosts: digitalocean
+  remote_user: root
+  become: yes
+
+  roles:
+    - update_apt
+
 - name: Configure droplet for Custom Stream Overlay
   hosts: custom-stream-overlay
   remote_user: root

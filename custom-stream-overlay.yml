@@ -5,7 +5,7 @@
     - update_apt
 
 - name: Update droplet
-  hosts: digitalocean
+  hosts: custom-stream-overlay
   remote_user: root
   become: yes
 

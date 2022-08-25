@@ -15,6 +15,7 @@
     name: npm
     update_cache: yes
   when: npm_check|bool == False
+  ignore_errors: yes
 
 - name: Install the gpg key for nodejs LTS
   apt_key:

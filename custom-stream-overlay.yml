@@ -2,7 +2,6 @@
   hosts: digitalocean
   roles:
     - setup_droplet
-    - update_apt
 
 - name: Update droplet
   hosts: custom-stream-overlay

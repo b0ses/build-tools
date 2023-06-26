@@ -71,6 +71,9 @@
         regexp: "^\\s*WEBHOOK_SECRET = ''"
         line: "WEBHOOK_SECRET = '{{ secret_key }}'"
       - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*DB_URI = ''"
+        line: "DB_URI = '{{ db_uri }}'"
+      - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*USERNAME = ''"
         line: "USERNAME = '{{ chatbot_name }}'"
       - path: 'custom_stream_api/settings.py'

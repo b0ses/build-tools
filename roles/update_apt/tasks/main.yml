@@ -10,7 +10,7 @@
   apt:
     upgrade: yes
     update_cache: yes
-    cache_valid_time: 86400 #One day
+    cache_valid_time: 1 #One day
 
 - name: Remove dependencies that are no longer required
   apt:

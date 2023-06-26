@@ -27,7 +27,7 @@
     unique_name: yes
     size: 1gb
     region: nyc1
-    image: ubuntu-18-04-x64
+    image: ubuntu-22-04-x64
     ssh_keys: ["{{ jenkins_key.data.ssh_key.id }}"]
     oauth_token: "{{ do_token }}"
   register: current_droplet

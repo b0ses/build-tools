@@ -1,4 +1,10 @@
 ---
+- name: Add deadsnakes repo for Python 3.11
+  apt_repository:
+    repo: "ppa:deadsnakes/ppa"
+    state: present
+    update_cache: yes
+
 - name: Install packages (Debian/Ubuntu)
   apt:
     name: python3.11,python3-pip,python3-distutils,libpq-dev,uwsgi,uwsgi-emperor,uwsgi-plugin-python3,python3-dev,nginx-full,git
@@ -10,3 +16,8 @@
     name: python3-venv
     state: present
     update_cache: yes
+
+- name: Update pip3
+  pip:
+    name: pip
+    state: latest

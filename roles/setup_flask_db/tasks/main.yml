@@ -1,9 +1,7 @@
 - name: Upgrade/rebuild database
   shell:
-    cmd: "'{{ base_dir }}/bin/flask' db upgrade head -d migrations"
-    chdir: '{{ module_dir }}'
-  environment:
-    FLASK_APP: server.py
+    cmd: "alembic upgrade head"
+    chdir: '{{ module_dir }}/custom_stream_api'
 
 - name: Set permissions for db directory
   file:

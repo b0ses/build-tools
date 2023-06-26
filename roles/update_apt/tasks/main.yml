@@ -1,4 +1,10 @@
 ---
+- name: Add deadsnakes repo for Python 3.11
+  apt_repository:
+    repo: "ppa:deadsnakes/ppa"
+    state: present
+    update_cache: yes
+
 - name: Update and upgrade apt packages
   become: true
   apt:

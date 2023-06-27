@@ -5,10 +5,6 @@
     state: absent
   when: rebuild_db|bool
 
-- name: Create a virtual environment
-  command: "{{ virtualenv_cmd }} '{{ base_dir }}'"
-  when: rebuild_db|bool
-
 - name: Clone Git repository
   git:
     repo: '{{ git_repo }}'
@@ -30,6 +26,10 @@
     clone: no
     update: yes
     force: yes
+
+- name: Create a virtual environment
+  command: "{{ virtualenv_cmd }} '{{ base_dir }}'"
+  when: rebuild_db|bool
 
 - name: Install requirements.txt
   pip:

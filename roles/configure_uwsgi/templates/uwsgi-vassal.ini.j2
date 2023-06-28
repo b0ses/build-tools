@@ -20,3 +20,8 @@ vacuum = true
 {% for env in uwsgi_env %}
 env = {{ env }}
 {% endfor %}
+
+; If VIRTUAL_ENV is set then use its value to specify the virtualenv directory
+if-env = VIRTUAL_ENV
+virtualenv = %(_)
+endif =

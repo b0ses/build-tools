@@ -7,6 +7,7 @@ master = true
 binary-path = {{ base_dir }}/.venvs/bin/uwsgi
 venv = {{ base_dir }}/.venvs
 module = {{ uwsgi_module }}
+pythonpath = {{ base_dir }}/.venvs/lib/python3.11/site-packages/
 uid = {{ uid }}
 gid = {{ gid }}
 processes = {{ uwsgi_processes }}
@@ -20,8 +21,3 @@ vacuum = true
 {% for env in uwsgi_env %}
 env = {{ env }}
 {% endfor %}
-
-; If VIRTUAL_ENV is set then use its value to specify the virtualenv directory
-if-env = VIRTUAL_ENV
-virtualenv = %(_)
-endif =

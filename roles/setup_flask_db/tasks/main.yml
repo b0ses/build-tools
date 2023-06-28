@@ -2,6 +2,8 @@
   shell:
     cmd: "alembic upgrade head"
     chdir: '{{ module_dir }}/custom_stream_api'
+  environment:
+    PYTHONPATH: "'{{ base_dir }}':{{ ansible_env.PYTHONPATH }}"
 
 - name: Set permissions for db directory
   file:

@@ -15,7 +15,6 @@
   hosts: custom-stream-overlay
   remote_user: root
   become: yes
-  when: build_overlay|bool
 
   vars:
     app_name: 'custom-stream-overlay'
@@ -31,20 +30,26 @@
 
 
   roles:
-    - reset_nginx
-    - install_react_app_deps
-    - setup_react_app
-    - patch_config_Debian_Ubuntu
-    - configure_nginx
-    - start_nginx
-    - setup-ssl
+    - role: reset_nginx
+      when: build_overlay|bool
+    - role: install_react_app_deps
+      when: build_overlay|bool
+    - role: setup_react_app
+      when: build_overlay|bool
+    - role: patch_config_Debian_Ubuntu
+      when: build_overlay|bool
+    - role: configure_nginx
+      when: build_overlay|bool
+    - role: start_nginx
+      when: build_overlay|bool
+    - role: setup-ssl
+      when: build_overlay|bool
 
 
 - name: Configure droplet for Custom Stream API
   hosts: custom-stream-overlay
   remote_user: root
   become: yes
-  when: build_api|bool
 
   vars:
     app_name: 'custom-stream-api'
@@ -120,22 +125,31 @@
         line: "HUE_GROUP_NUMBER = {{ hue_group_number }}"
 
   roles:
-    - install_web_app_packages
-    - setup_venv_app
-    - setup_flask_db
-    - patch_config_Debian_Ubuntu
-    - configure_nginx
-    - configure_uwsgi
-    - create_service_Debian_Ubuntu
-    - start_uwsgi
-    - start_nginx
-    - setup-ssl
+    - role: install_web_app_packages
+      when: build_api|bool
+    - role: setup_venv_app
+      when: build_api|bool
+    - role: setup_flask_db
+      when: build_api|bool
+    - role: patch_config_Debian_Ubuntu
+      when: build_api|bool
+    - role: configure_nginx
+      when: build_api|bool
+    - role: configure_uwsgi
+      when: build_api|bool
+    - role: create_service_Debian_Ubuntu
+      when: build_api|bool
+    - role: start_uwsgi
+      when: build_api|bool
+    - role: start_nginx
+      when: build_api|bool
+    - role: setup-ssl
+      when: build_api|bool
 
 - name: Configure droplet for Custom Stream Dashboard
   hosts: custom-stream-overlay
   remote_user: root
   become: yes
-  when: build_dashboard|bool
 
   vars:
     app_name: 'custom-stream-dashboard'
@@ -168,9 +182,15 @@
     nginx_server_name: 'custom-stream-dashboard'
 
   roles:
-    - install_react_app_deps
-    - setup_react_app
-    - configure_nginx
-    - patch_config_Debian_Ubuntu
-    - start_nginx
-    - setup-ssl
+    - role: install_react_app_deps
+      when: build_dashboard|bool
+    - role: setup_react_app
+      when: build_dashboard|bool
+    - role: configure_nginx
+      when: build_dashboard|bool
+    - role: patch_config_Debian_Ubuntu
+      when: build_dashboard|bool
+    - role: start_nginx
+      when: build_dashboard|bool
+    - role: setup-ssl
+      when: build_dashboard|bool

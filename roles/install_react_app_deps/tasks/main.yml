@@ -36,5 +36,5 @@
 
 - name: Prevent it from being upgraded
   ansible.builtin.dpkg_selections:
-  name: nodejs
-  selection: hold
+    name: nodejs
+    selection: hold

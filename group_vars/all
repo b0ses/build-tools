@@ -4,7 +4,7 @@ module_name: "{{ app_name | replace('-', '_') | lower }}"
 app_package: '{{ app_name }}.wsgi'
 app_callable: application
 base_dir: '/git/{{ app_name }}'
-appdata_dir: '{{ base_dir }}/{{ app_name }}'
+appdata_dir: '{{ base_dir }}'
 module_dir: '{{ base_dir }}/{{ app_name }}/{{ module_name }}'
 ssl_dir: '/var/www/letsencrypt'
 nginx_server_name: '{{ app_name }}.local'

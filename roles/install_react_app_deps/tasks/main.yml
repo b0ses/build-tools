@@ -33,3 +33,8 @@
 - name: Update nodejs
   shell: apt install nodejs -y
   when: npm_check|bool == False
+
+- name: Prevent it from being upgraded
+  ansible.builtin.dpkg_selections:
+  name: nodejs
+  selection: hold

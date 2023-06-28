@@ -1,6 +1,6 @@
 - name: Upgrade/rebuild database
   shell:
-    cmd: "source {{ base_dir }}/.venvs/bin/activate && alembic upgrade head"
+    cmd: ". {{ base_dir }}/.venvs/bin/activate && alembic upgrade head"
     chdir: '{{ module_dir }}'
   environment:
     PYTHONPATH: "'{{ base_dir }}'"

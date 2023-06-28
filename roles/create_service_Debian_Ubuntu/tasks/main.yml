@@ -6,3 +6,9 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Replacing uwsgi path with the one installed in the venv
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/system/emperor.uwsgi.service
+    regexp: '^ExecStart='
+    line: ExecStart={{ base_dir }}/.venv/bin/uwsgi --ini /etc/uwsgi-emperor/emperor.ini

@@ -1,7 +1,7 @@
 ---
 - name: Install packages (Debian/Ubuntu)
   apt:
-    name: python3.11,python3-pip,python3-distutils,libpq-dev,uwsgi,uwsgi-emperor,uwsgi-plugin-python3,python3-dev,nginx-full,git
+    name: python3.11,python3-pip,python3.11-distutils,libpq-dev,uwsgi,uwsgi-emperor,uwsgi-plugin-python3,python3-dev,nginx-full,git
     state: present
     update_cache: yes
 

@@ -2,6 +2,7 @@
 socket = {{ base_dir }}/uwsgi.sock
 chmod-socket = 775
 chdir = {{ appdata_dir }}
+home = {{ base_dir }}/.venvs/
 master = true
 binary-path = {{ base_dir }}/.venvs/bin/uwsgi
 virtualenv = {{ base_dir }}/.venvs

@@ -1,7 +1,7 @@
 - name: Upgrade/rebuild database
   shell:
     cmd: "alembic upgrade head"
-    chdir: '{{ module_dir }}/custom_stream_api'
+    chdir: '{{ module_dir }}'
   environment:
     PYTHONPATH: "'{{ base_dir }}'"
 

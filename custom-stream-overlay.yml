@@ -15,6 +15,7 @@
   hosts: custom-stream-overlay
   remote_user: root
   become: yes
+  when: build_overlay|bool
 
   vars:
     app_name: 'custom-stream-overlay'
@@ -28,6 +29,7 @@
         line: "  CUTOFF: {{ cutoff }}"
     nginx_server_name: 'custom-stream-overlay'
 
+
   roles:
     - reset_nginx
     - install_react_app_deps
@@ -37,10 +39,12 @@
     - start_nginx
     - setup-ssl
 
+
 - name: Configure droplet for Custom Stream API
   hosts: custom-stream-overlay
   remote_user: root
   become: yes
+  when: build_api|bool
 
   vars:
     app_name: 'custom-stream-api'
@@ -131,6 +135,7 @@
   hosts: custom-stream-overlay
   remote_user: root
   become: yes
+  when: build_dashboard|bool
 
   vars:
     app_name: 'custom-stream-dashboard'

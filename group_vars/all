@@ -32,6 +32,9 @@ nginx_hostless_global_config: no
 nodejs_version: '16'
 secret_key: "{{ lookup('env', 'SECRET_KEY') }}"
 rebuild_db: "{{ lookup('env', 'rebuild_db') }}"
+build_api: "{{ lookup('env', 'build_api') }}"
+build_dashboard: "{{ lookup('env', 'build_dashboard') }}"
+build_overlay: "{{ lookup('env', 'build_overlay') }}"
 domain_name: "{{ lookup('env', 'DOMAIN_NAME') }}"
 twitch_client_id: "{{ lookup('env', 'TWITCH_CLIENT_ID') }}"
 twitch_client_secret: "{{ lookup('env', 'TWITCH_CLIENT_SECRET') }}"

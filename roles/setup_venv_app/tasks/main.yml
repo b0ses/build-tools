@@ -36,7 +36,7 @@
   command: "{{ virtualenv_cmd }} '{{ base_dir }}'/.venvs"
   when: rebuild_db|bool
   environment:
-    PYTHONPATH: "'{{ base_dir }}':{{ ansible_env.PYTHONPATH }}"
+    PYTHONPATH: "'{{ base_dir }}'"
 
 - name: Install requirements.txt
   pip:

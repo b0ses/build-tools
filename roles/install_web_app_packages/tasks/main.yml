@@ -7,7 +7,7 @@
 
 - name: python3-venv is special
   apt:
-    name: python3-venv
+    name: python3.11-venv
     state: present
     update_cache: yes
 

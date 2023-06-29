@@ -59,7 +59,7 @@
     nginx_http_location: null
     nginx_server_name: 'custom-stream-api'
     uwsgi_sockets: true
-    uwsgi_threads: 10
+    uwsgi_threads: 1
     line_changes:
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*HOST = '127.0.0.1'"

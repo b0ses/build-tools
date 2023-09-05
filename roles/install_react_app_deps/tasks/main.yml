@@ -10,13 +10,6 @@
   register: npm_check
   ignore_errors: yes
 
-- name: Install npm
-  apt:
-    name: npm
-    update_cache: yes
-  when: npm_check|bool == False
-  ignore_errors: yes
-
 - name: Install the gpg key for nodejs LTS
   apt_key:
     url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
@@ -34,7 +27,14 @@
   shell: apt install nodejs -y
   when: npm_check|bool == False
 
-- name: Prevent it from being upgraded
-  ansible.builtin.dpkg_selections:
-    name: nodejs
-    selection: hold
+#- name: Prevent it from being upgraded
+#  ansible.builtin.dpkg_selections:
+#    name: nodejs
+#    selection: hold
+
+- name: Install npm
+  apt:
+    name: npm
+    update_cache: yes
+  when: npm_check|bool == False
+  ignore_errors: yes

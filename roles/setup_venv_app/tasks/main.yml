@@ -27,11 +27,11 @@
 
 - name: Create virtual environment dir
   file:
-    path: "{{ base_dir }}/.venvs/"
+    path: "{{ base_dir }}/.venvs/{{ module_name }}/"
     state: directory
 
 - name: Create a virtual environment
-  command: "{{ virtualenv_cmd }} {{ base_dir }}/.venvs"
+  command: "{{ virtualenv_cmd }} {{ base_dir }}/.venvs/{{ module_name }}"
   environment:
     PYTHONPATH: "{{ base_dir }}"
 

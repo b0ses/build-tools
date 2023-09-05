@@ -5,6 +5,12 @@
     state: present
     update_cache: yes
 
+- name: remove nodejs
+  apt:
+    name: nodejs
+    state: absent
+    purge: true
+
 - name: clear out any previous nodejs nonsense
   shell: dpkg -r --force-remove-reinstreq libnode-dev
 

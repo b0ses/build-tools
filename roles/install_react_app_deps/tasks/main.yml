@@ -10,6 +10,27 @@
   register: npm_check
   ignore_errors: yes
 
+- name: remove nodesourcelist
+  file:
+    name: /etc/apt/sources.list.d/nodesource.list
+    state: absent
+
+#- name: fix broken
+#  apt:
+#    state: fixed
+#
+#- name: remove nodejs
+#  apt:
+#    name: nodejs
+#    state: absent
+#    purge: true
+#
+#- name: remove nodejs
+#  apt:
+#    name: nodejs-doc
+#    state: absent
+#    purge: true
+
 - name: Install the gpg key for nodejs LTS
   apt_key:
     url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"

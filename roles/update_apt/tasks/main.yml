@@ -6,10 +6,10 @@
     update_cache: yes
 
 - name: clear out any previous nodejs nonsense
-  shell: dkpg -r --remove --force-remove-reinstreq libnode-dev
+  shell: dpkg -r --remove --force-remove-reinstreq libnode-dev
 
 - name: clear out any previous nodejs nonsense
-  shell: dkpg -r --remove --force-remove-reinstreq libnode72:amd64
+  shell: dpkg -r --remove --force-remove-reinstreq libnode72:amd64
 
 - name: Update and upgrade apt packages
   become: true

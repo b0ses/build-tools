@@ -129,8 +129,6 @@
       when: build_api|bool
     - role: setup_venv_app
       when: build_api|bool
-    - role: setup_flask_db
-      when: build_api|bool
     - role: patch_config_Debian_Ubuntu
       when: build_api|bool
     - role: configure_nginx

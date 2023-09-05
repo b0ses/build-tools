@@ -27,13 +27,13 @@
 
 - name: Create virtual environment dir
   file:
-    path: "'{{ base_dir }}'/.venvs"
+    path: "{{ base_dir }}/.venvs"
     state: directory
 
 - name: Create a virtual environment
   command: "{{ virtualenv_cmd }} {{ base_dir }}/.venvs"
   environment:
-    PYTHONPATH: "'{{ base_dir }}'"
+    PYTHONPATH: "{{ base_dir }}"
 
 - name: Install requirements.txt
   pip:

@@ -33,7 +33,7 @@
     state: directory
 
 - name: Create a virtual environment
-  command: "{{ virtualenv_cmd }} '{{ base_dir }}'/.venvs"
+  command: "{{ virtualenv_cmd }} {{ base_dir }}/.venvs"
   when: rebuild_db|bool
   environment:
     PYTHONPATH: "'{{ base_dir }}'"
@@ -41,7 +41,7 @@
 - name: Install requirements.txt
   pip:
     requirements: '{{ appdata_dir }}/requirements.txt'
-    virtualenv: "{{ base_dir }}/.venvs/{{ app_name }}"
+    virtualenv: "{{ base_dir }}/.venvs"
 
 - name: Set permissions for base directory
   file:

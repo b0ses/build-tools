@@ -5,6 +5,16 @@
     state: present
     update_cache: yes
 
+- name: clear out any previous nodejs nonsense
+  ansible.builtin.dpkg_selections:
+    name: libnode-dev
+    selection: deinstall
+
+- name: clear out any previous nodejs nonsense
+  ansible.builtin.dpkg_selections:
+    name: libnode-dev
+    selection: libnode72:amd64
+
 - name: Update and upgrade apt packages
   become: true
   apt:

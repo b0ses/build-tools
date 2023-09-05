@@ -19,17 +19,17 @@
   apt:
     state: fixed
 
-#- name: remove nodejs
-#  apt:
-#    name: nodejs
-#    state: absent
-#    purge: true
-#
-#- name: remove nodejs
-#  apt:
-#    name: nodejs-doc
-#    state: absent
-#    purge: true
+- name: remove nodejs
+  apt:
+    name: nodejs
+    state: absent
+    purge: true
+
+- name: remove nodejs
+  apt:
+    name: nodejs-doc
+    state: absent
+    purge: true
 
 - name: Install the gpg key for nodejs LTS
   apt_key:

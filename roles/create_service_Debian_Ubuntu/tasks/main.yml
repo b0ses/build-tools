@@ -11,4 +11,4 @@
   ansible.builtin.lineinfile:
     path: /etc/systemd/system/emperor.uwsgi.service
     regexp: '^ExecStart='
-    line: ExecStart={{ base_dir }}/.venvs/bin/uwsgi --ini /etc/uwsgi-emperor/emperor.ini
+    line: ExecStart={{ base_dir }}/.venvs/{{ module_name }}/bin/uwsgi --ini /etc/uwsgi-emperor/emperor.ini

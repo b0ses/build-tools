@@ -15,10 +15,10 @@
     name: /etc/apt/sources.list.d/nodesource.list
     state: absent
 
-#- name: fix broken
-#  apt:
-#    state: fixed
-#
+- name: fix broken
+  apt:
+    state: fixed
+
 #- name: remove nodejs
 #  apt:
 #    name: nodejs

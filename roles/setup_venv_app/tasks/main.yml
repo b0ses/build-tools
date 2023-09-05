@@ -27,7 +27,7 @@
 
 - name: Create virtual environment dir
   file:
-    path: "{{ base_dir }}/.venvs"
+    path: "{{ base_dir }}/.venvs/"
     state: directory
 
 - name: Create a virtual environment

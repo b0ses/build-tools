@@ -20,7 +20,6 @@
   apt_repository:
     repo: "deb https://deb.nodesource.com/node_{{ nodejs_version }}.x {{ ansible_distribution_release }} main"
     state: present
-    update_cache: yes
   when: npm_check|bool == False
 
 - name: Update nodejs

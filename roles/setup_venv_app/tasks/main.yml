@@ -41,7 +41,7 @@
 - name: Install requirements.txt
   pip:
     requirements: '{{ appdata_dir }}/requirements.txt'
-    virtualenv: "{{ base_dir }}/.venvs"
+    virtualenv: "{{ base_dir }}/.venvs/{{ module_name }}"
 
 - name: Set permissions for base directory
   file:

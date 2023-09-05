@@ -12,8 +12,8 @@
 
 - name: clear out any previous nodejs nonsense
   ansible.builtin.dpkg_selections:
-    name: libnode-dev
-    selection: libnode72:amd64
+    name: libnode72:amd64
+    selection: deinstall
 
 - name: Update and upgrade apt packages
   become: true

@@ -37,12 +37,24 @@
     state: present
   when: npm_check|bool == False
 
-- name: Install the nodejs LTS repos
-  apt_repository:
-    repo: "deb https://deb.nodesource.com/setup_{{ nodejs_version }}.x {{ ansible_distribution_release }} main"
+#- name: Install the nodejs LTS repos
+#  apt_repository:
+#    repo: "deb https://deb.nodesource.com/setup_{{ nodejs_version }}.x {{ ansible_distribution_release }} main"
+#    state: present
+#    update_cache: yes
+#    filename: node_js_{{ nodejs_version }}.list
+#  when: npm_check|bool == False
+
+- name: Add NodeSource repository
+  shell: "curl -fsSL https://deb.nodesource.com/setup_{{ node_version }} | bash -"
+  args:
+    warn: false
+  when: npm_check|bool == False
+
+- name: Install Node.js
+  apt:
+    name: nodejs
     state: present
-    update_cache: yes
-    filename: node_js_{{ nodejs_version }}.list
   when: npm_check|bool == False
 
 - name: Update nodejs

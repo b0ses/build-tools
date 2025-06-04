@@ -46,7 +46,7 @@
 #  when: npm_check|bool == False
 
 - name: Add NodeSource repository
-  shell: "curl -fsSL https://deb.nodesource.com/setup_{{ node_version }} | bash -"
+  shell: "curl -fsSL https://deb.nodesource.com/setup_{{ nodejs_version }} | bash -"
   args:
     warn: false
   when: npm_check|bool == False

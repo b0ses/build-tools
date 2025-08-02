@@ -58,7 +58,7 @@
   become: yes
 
   vars:
-    app_name: 'custom-stream-overlay'
+    app_name: 'custom-stream-overlay-preview'
     nginx_http_port: 81
     line_changes:
       - path: 'src/js/Settings.js'
@@ -73,18 +73,12 @@
       - path: 'src/js/Settings.js'
         regexp: "^\\s*CUTOFF: .*"
         line: "  CUTOFF: {{ cutoff }}"
-    nginx_server_name: 'custom-stream-overlay'
+    nginx_server_name: 'custom-stream-overlay-preview'
 
 
   roles:
-    - role: reset_nginx
-      when: build_overlay|bool
-    - role: install_react_app_deps
-      when: build_overlay|bool
-    - role: setup_react_app
-      when: build_overlay|bool
-    - role: patch_config_Debian_Ubuntu
-      when: build_overlay|bool
+#    - role: setup_react_app
+#      when: build_overlay|bool
     - role: configure_nginx
       when: build_overlay|bool
     - role: start_nginx

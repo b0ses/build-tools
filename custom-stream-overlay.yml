@@ -24,6 +24,9 @@
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
         line: "  API_HOST: 'https://{{ domain_name }}',"
       - path: 'src/js/Settings.js'
+        regexp: "^\\s*API_PORT: '5000',"
+        line: "  API_PORT: '5000',"
+      - path: 'src/js/Settings.js'
         regexp: "^\\s*NAMESPACE: 'live',"
         line: "  NAMESPACE: 'live',"
       - path: 'src/js/Settings.js'
@@ -61,6 +64,9 @@
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
         line: "  API_HOST: 'https://{{ domain_name }}',"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*API_PORT: '5000',"
+        line: "  API_PORT: '5000',"
       - path: 'src/js/Settings.js'
         regexp: "^\\s*NAMESPACE: 'live',"
         line: "  NAMESPACE: 'preview',"

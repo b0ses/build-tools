@@ -13,7 +13,7 @@
 - name: Create nginx config
   template:
     src: templates/nginx-http.conf.j2
-    dest: '{{ nginx_dir }}/{{ app_name }}.conf'
+    dest: '{{ nginx_dir }}/{{ nginx_server_name }}.conf'
     owner: root
     group: root
     mode: 0644

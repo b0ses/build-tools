@@ -1,4 +1,4 @@
 - name: Upgrade/rebuild database
   shell:
-    cmd: ". {{ base_dir }}/.venvs/bin/activate && export PYTHONPATH={{ base_dir }} && alembic upgrade head"
+    cmd: ". {{ base_dir }}/.venvs/{{ module_name }}/bin/activate && export PYTHONPATH={{ base_dir }} && alembic upgrade head"
     chdir: '{{ module_dir }}'

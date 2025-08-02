@@ -11,7 +11,7 @@
   roles:
     - update_apt
 
-- name: Configure droplet for Custom Stream Overlay
+- name: Configure droplet for Custom Stream Overlay - LIVE
   hosts: custom-stream-overlay
   remote_user: root
   become: yes
@@ -23,6 +23,47 @@
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
         line: "  API_HOST: 'https://{{ domain_name }}',"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*NAMESPACE: 'http://127.0.0.1',"
+        line: "  NAMESPACE: 'live',"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*CUTOFF: .*"
+        line: "  CUTOFF: {{ cutoff }}"
+    nginx_server_name: 'custom-stream-overlay'
+
+
+  roles:
+    - role: reset_nginx
+      when: build_overlay|bool
+    - role: install_react_app_deps
+      when: build_overlay|bool
+    - role: setup_react_app
+      when: build_overlay|bool
+    - role: patch_config_Debian_Ubuntu
+      when: build_overlay|bool
+    - role: configure_nginx
+      when: build_overlay|bool
+    - role: start_nginx
+      when: build_overlay|bool
+    - role: setup-ssl
+      when: build_overlay|bool
+
+
+- name: Configure droplet for Custom Stream Overlay - PREVIEW
+  hosts: custom-stream-overlay
+  remote_user: root
+  become: yes
+
+  vars:
+    app_name: 'custom-stream-overlay'
+    nginx_http_port: 81
+    line_changes:
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
+        line: "  API_HOST: 'https://{{ domain_name }}',"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*NAMESPACE: 'http://127.0.0.1',"
+        line: "  NAMESPACE: 'preview',"
       - path: 'src/js/Settings.js'
         regexp: "^\\s*CUTOFF: .*"
         line: "  CUTOFF: {{ cutoff }}"
@@ -73,6 +114,9 @@
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*OVERLAY_PORT = None"
         line: "OVERLAY_PORT = None"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*PREVIEW_PORT = 81"
+        line: "PREVIEW_PORT = 81"
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*SECRET = ''"
         line: "SECRET = '{{ secret_key }}'"
@@ -156,6 +200,18 @@
       - path: 'src/js/Settings.js'
         regexp: "^\\s*API_HOST: 'http://127.0.0.1',"
         line: "  API_HOST: 'https://{{ domain_name }}',"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*API_PORT: '5000',"
+        line: "  API_PORT: '5000',"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*LIVE_PORT: '',"
+        line: "  LIVE_PORT: '',"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*LIVE: true,"
+        line: "  LIVE: true,"
+      - path: 'src/js/Settings.js'
+        regexp: "^\\s*PAGE_LIMIT: 50,"
+        line: "  PAGE_LIMIT: 50,"
 
       - path: 'src/js/Settings.js'
         regexp: "^\\s*LOGIN: true,"

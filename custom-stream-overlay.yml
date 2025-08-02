@@ -216,8 +216,8 @@
         regexp: "^\\s*LIVE: true,"
         line: "  LIVE: true,"
       - path: 'src/js/Settings.js'
-        regexp: "^\\s*PAGE_LIMIT: 50,"
-        line: "  PAGE_LIMIT: 50,"
+        regexp: "^\\s*PAGE_LIMIT: 50"
+        line: "  PAGE_LIMIT: 50"
 
       - path: 'src/js/Settings.js'
         regexp: "^\\s*LOGIN: true,"

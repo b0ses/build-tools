@@ -58,7 +58,7 @@
   become: yes
 
   vars:
-    app_name: 'custom-stream-overlay-preview'
+    app_name: 'custom-stream-overlay'
     nginx_http_port: 81
     line_changes:
       - path: 'src/js/Settings.js'

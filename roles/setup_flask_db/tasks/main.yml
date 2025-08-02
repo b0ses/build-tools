@@ -2,11 +2,3 @@
   shell:
     cmd: ". {{ base_dir }}/.venvs/bin/activate && export PYTHONPATH={{ base_dir }} && alembic upgrade head"
     chdir: '{{ module_dir }}'
-
-- name: Set permissions for db directory
-  file:
-    path: '{{ base_dir }}'
-    owner: '{{ uid }}'
-    group: '{{ gid }}'
-    state: directory
-    recurse: yes

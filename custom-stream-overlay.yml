@@ -58,7 +58,8 @@
   become: yes
 
   vars:
-    app_name: 'custom-stream-overlay'
+    app_name: 'custom-stream-overlay-preview'
+    base_dir: '/git/custom-stream-overlay-preview'
     nginx_http_port: 81
     line_changes:
       - path: 'src/js/Settings.js'
@@ -77,8 +78,8 @@
 
 
   roles:
-#    - role: setup_react_app
-#      when: build_overlay|bool
+    - role: setup_react_app
+      when: build_overlay|bool
     - role: configure_nginx
       when: build_overlay|bool
     - role: start_nginx

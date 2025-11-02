@@ -1,6 +1,5 @@
 chdir = "{{ appdata_dir }}"
 worker_class = "uvicorn_worker.UvicornWorker"
-bind = "{{ base_dir }}/gunicorn.sock"
 workers = "{{ gunicorn_processes }}"
 accesslog = "{{ base_dir }}/gunicorn.log"
 errorlog = "{{ base_dir }}/gunicorn.log"

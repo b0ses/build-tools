@@ -1,9 +1,8 @@
 chdir = "{{ appdata_dir }}"
 worker_class = "uvicorn_worker.UvicornWorker"
-workers = "{{ gunicorn_processes }}"
+workers = {{ gunicorn_processes }}
 accesslog = "{{ base_dir }}/gunicorn.log"
 errorlog = "{{ base_dir }}/gunicorn.log"
-wsgi_app = "{{ gunicorn_module }}"
 user = "{{ uid }}"
 group = "{{ gid }}"
 umask = "775"

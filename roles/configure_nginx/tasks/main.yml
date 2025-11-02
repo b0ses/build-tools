@@ -10,9 +10,18 @@
     - 'files/nginx_hostless_{{ ansible_distribution }}.conf'
   when: nginx_hostless_global_config
 
-- name: Create nginx config
+#- name: Create nginx config - uwsgi
+#  template:
+#    src: templates/nginx-uwsgi-http.conf.j2
+#    dest: '{{ nginx_dir }}/{{ nginx_server_name }}.conf'
+#    owner: root
+#    group: root
+#    mode: 0644
+#    force: yes
+
+- name: Create nginx config - gunicorn
   template:
-    src: templates/nginx-http.conf.j2
+    src: templates/nginx-gunicorn-http.conf.j2
     dest: '{{ nginx_dir }}/{{ nginx_server_name }}.conf'
     owner: root
     group: root

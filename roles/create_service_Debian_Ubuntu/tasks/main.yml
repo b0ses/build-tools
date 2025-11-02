@@ -1,14 +1,28 @@
 ---
-- name: Create emperor.uwsgi service (Debian/Ubuntu)
+#- name: Create emperor.uwsgi service (Debian/Ubuntu)
+#  copy:
+#    src: files/emperor.uwsgi.service
+#    dest: /etc/systemd/system/emperor.uwsgi.service
+#    owner: root
+#    group: root
+#    mode: 0644
+#
+#- name: Replacing uwsgi path with the one installed in the venv
+#  ansible.builtin.lineinfile:
+#    path: /etc/systemd/system/emperor.uwsgi.service
+#    regexp: '^ExecStart='
+#    line: ExecStart={{ base_dir }}/.venvs/{{ module_name }}/bin/uwsgi --ini /etc/uwsgi-emperor/emperor.ini
+
+- name: Create gunicorn service (Debian/Ubuntu)
   copy:
-    src: files/emperor.uwsgi.service
-    dest: /etc/systemd/system/emperor.uwsgi.service
+    src: files/gunicorn.service
+    dest: /etc/systemd/system/gunicorn.service
     owner: root
     group: root
     mode: 0644
 
-- name: Replacing uwsgi path with the one installed in the venv
+- name: Replacing gunicorn path with the one installed in the venv
   ansible.builtin.lineinfile:
-    path: /etc/systemd/system/emperor.uwsgi.service
+    path: /etc/systemd/system/gunicorn.service
     regexp: '^ExecStart='
-    line: ExecStart={{ base_dir }}/.venvs/{{ module_name }}/bin/uwsgi --ini /etc/uwsgi-emperor/emperor.ini
+    line: ExecStart={{ base_dir }}/.venvs/{{ module_name }}/bin/gunicorn -c /etc/gunicorn/{{ app_name }}.ini

@@ -100,8 +100,10 @@
     nginx_http_port: 5000
     nginx_http_location: null
     nginx_server_name: 'custom-stream-api'
-    uwsgi_sockets: true
-    uwsgi_threads: 1
+#    uwsgi_sockets: true
+    gunicorn_sockets: true
+#    uwsgi_threads: 1
+    gunicorn_threads: 1
     line_changes:
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*HOST = '127.0.0.1'"
@@ -180,11 +182,15 @@
       when: build_api|bool
     - role: configure_nginx
       when: build_api|bool
-    - role: configure_uwsgi
+#    - role: configure_uwsgi
+#      when: build_api|bool
+    - role: configure_gunicorn
       when: build_api|bool
     - role: create_service_Debian_Ubuntu
       when: build_api|bool
-    - role: start_uwsgi
+#    - role: start_uwsgi
+#      when: build_api|bool
+    - role: start_gunicorn
       when: build_api|bool
     - role: start_nginx
       when: build_api|bool

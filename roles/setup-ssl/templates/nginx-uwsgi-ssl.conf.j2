@@ -1,0 +1,70 @@
+server {
+    # for a public HTTPS server:
+    {% if nginx_http_port != 80 %}
+    listen  {{nginx_http_port}} ssl;
+    listen  [::]:{{nginx_http_port}} ssl;
+    {% else %}
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    {% endif %}
+    ssl_certificate         /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/{{ domain_name }}/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem;
+
+    server_name {{ nginx_server_name }};
+
+    {% if nginx_http_location %}
+    location / {
+        add_header 'Access-Control-Allow-Origin' '*';
+        root {{ nginx_http_location }};
+    }
+    {% else %}
+    location / {
+        include uwsgi_params;
+        uwsgi_pass unix://{{ base_dir }}/uwsgi.sock;
+    }
+    location /socket.io {
+        include uwsgi_params;
+        uwsgi_buffering off;
+        uwsgi_pass unix://{{ base_dir }}/uwsgi.sock;
+
+        # backup for websockets
+        # proxy_http_version 1.1;
+        # proxy_set_header X-Forwarded-For $remote_addr;
+        # proxy_set_header Upgrade $http_upgrade;
+        # proxy_set_header Connection "upgrade";
+        # proxy_set_header Host $host;
+        # proxy_pass http://unix://{{ base_dir }}/uwsgi-http.sock;
+    }
+
+    location /static {
+        alias {{ appdata_dir }}/static;
+    }
+
+    location /favicon.ico {
+        alias {{ appdata_dir }}/static/favicon.ico;
+    }
+    {% endif %}
+
+    location /.well-known/acme-challenge {
+        root {{ ssl_dir }};
+        try_files $uri $uri/ =404;
+    }
+}
+
+# Redirect http->https version
+server {
+    # for a public HTTP server:
+    listen {{nginx_http_port}};
+
+    location /.well-known/acme-challenge {
+        root {{ ssl_dir }};
+        try_files $uri $uri/ =404;
+    }
+
+    {% if nginx_http_port != 80 %}
+    return 301 https://$host:{{nginx_http_port}}$request_uri;
+    {% else %}
+    return 301 https://$host$request_uri;
+    {% endif %}
+}

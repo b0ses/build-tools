@@ -33,9 +33,18 @@
     job: letsencrypt --keep-until-expiring certonly -n --webroot -w {{ ssl_dir }} -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }} && service nginx reload
   when: pem_exists.stat.exists == False
 
+#- name: Update nginx for ssl
+#  template:
+#    src: templates/nginx-uwsgi-ssl.conf.j2
+#    dest: '{{ nginx_dir }}/{{ nginx_server_name }}.conf'
+#    owner: root
+#    group: root
+#    mode: 0644
+#    force: yes
+
 - name: Update nginx for ssl
   template:
-    src: templates/nginx-ssl.conf.j2
+    src: templates/nginx-gunicorn-ssl.conf.j2
     dest: '{{ nginx_dir }}/{{ nginx_server_name }}.conf'
     owner: root
     group: root

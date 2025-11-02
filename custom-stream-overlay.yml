@@ -96,7 +96,7 @@
   vars:
     app_name: 'custom-stream-api'
     app_package: "custom_stream_api.server"
-    app_callable: "app"
+    app_callable: "app.flask_app"
     nginx_http_port: 5000
     nginx_http_location: null
     nginx_server_name: 'custom-stream-api'

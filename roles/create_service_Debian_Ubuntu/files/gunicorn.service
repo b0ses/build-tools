@@ -3,7 +3,7 @@ Description=Gunicorn
 After=syslog.target
 
 [Service]
-ExecStart=/usr/bin/gunicorn -c /etc/gunicorn/{{ app_name }}.py -b {{ base_dir }}/gunicorn.sock
+ExecStart=/usr/bin/gunicorn -c /etc/gunicorn/{{ app_name }}.py -b unix:{{ base_dir }}/gunicorn.sock
 # Requires systemd version 211 or newer
 RuntimeDirectory=gunicorn
 Restart=always

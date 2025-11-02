@@ -3,7 +3,7 @@ Description=Gunicorn
 After=syslog.target
 
 [Service]
-ExecStart=/usr/bin/gunicorn -c /etc/gunicorn/{{ app_name }}.ini
+ExecStart=/usr/bin/gunicorn --paste /etc/gunicorn/{{ app_name }}.ini
 # Requires systemd version 211 or newer
 RuntimeDirectory=gunicorn
 Restart=always

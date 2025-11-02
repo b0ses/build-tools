@@ -5,7 +5,7 @@
 #    state: present
 #    update_cache: yes
 
-- name: Install packages (Debian/Ubuntu) - UWSGI
+- name: Install packages (Debian/Ubuntu) - Gunicorn
   apt:
     name: python3.11,python3-pip,python3.11-distutils,libpq-dev,gunicorn,uvicorn,python3.11-dev,nginx-full,git
     state: present

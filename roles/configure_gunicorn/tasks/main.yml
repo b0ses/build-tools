@@ -5,8 +5,8 @@
 
 - name: Create Gunicorn config
   template:
-    src: templates/gunicorn.ini.j2
-    dest: '{{ gunicorn_dir }}/{{ app_name }}.ini'
+    src: templates/conf.py
+    dest: '{{ gunicorn_dir }}/{{ app_name }}.py'
     owner: root
     group: root
     mode: 0644

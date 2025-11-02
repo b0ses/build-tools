@@ -1,16 +1,11 @@
-[gunicorn]
 chdir = {{ appdata_dir }}
 worker_class = workeruvicorn.workers.UvicornWorker
 bind = {{ base_dir }}/gunicorn.sock
 workers = {{ gunicorn_processes }}
-accesslog = file:{{ base_dir }}/gunicorn.log
-errorlog = file:{{ base_dir }}/gunicorn.log
+accesslog = {{ base_dir }}/gunicorn.log
+errorlog = {{ base_dir }}/gunicorn.log
 wsgi_app = {{ gunicorn_module }}
 user = {{ uid }}
 group = {{ gid }}
 umask = 775
 mode = 775
-
-{% for env in gunicorn_env %}
-env = {{ env }}
-{% endfor %}

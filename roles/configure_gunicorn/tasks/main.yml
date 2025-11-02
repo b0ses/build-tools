@@ -1,3 +1,7 @@
+- name: Create Gunicorn dir
+  file:
+    name: '{{ gunicorn_dir }}'
+    state: directory
 
 - name: Create Gunicorn config
   template:

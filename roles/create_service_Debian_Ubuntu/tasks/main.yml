@@ -25,5 +25,5 @@
   ansible.builtin.lineinfile:
     path: /etc/systemd/system/gunicorn.service
     regexp: '^ExecStart='
-     line: ExecStart={{ base_dir }}/.venvs/{{ module_name }}/bin/gunicorn -c /etc/gunicorn/{{ app_name }}.py -b unix://{{ base_dir }}/gunicorn.sock  {{ gunicorn_module }}
+    line: ExecStart={{ base_dir }}/.venvs/{{ module_name }}/bin/gunicorn -c /etc/gunicorn/{{ app_name }}.py -b unix://{{ base_dir }}/gunicorn.sock  {{ gunicorn_module }}
 #    line: ExecStart={{ base_dir }}/.venvs/{{ module_name }}/bin/uvicorn -c /etc/gunicorn/{{ app_name }}.py --uds {{ base_dir }}/gunicorn.sock  {{ gunicorn_module }}

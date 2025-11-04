@@ -42,6 +42,11 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ base_dir }}/.venvs/{{ module_name }}/bin"
 
+
+- name: Add log file in module directory
+  file:
+    path: "{{ module_dir }}/app.log"
+
 - name: Set permissions for base directory
   file:
     path: '{{ base_dir }}'

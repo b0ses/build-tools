@@ -6,4 +6,5 @@ errorlog = "{{ base_dir }}/gunicorn.log"
 user = "{{ uid }}"
 group = "{{ gid }}"
 umask = "775"
-mode = "775"
+# mode = "775"
+capture_output = True

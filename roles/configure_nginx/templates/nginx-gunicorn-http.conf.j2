@@ -11,7 +11,10 @@ server {
     }
     {% else %}
     location / {
-        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization' always;
+        add_header 'Access-Control-Allow-Credentials' 'true' always;
 
         include proxy_params;
         proxy_pass http://unix://{{ base_dir }}/gunicorn.sock;
@@ -28,7 +31,10 @@ server {
         proxy_set_header Host $host;
     }
     location /socket.io {
-        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization' always;
+        add_header 'Access-Control-Allow-Credentials' 'true' always;
         
         include proxy_params;
         proxy_buffering off;

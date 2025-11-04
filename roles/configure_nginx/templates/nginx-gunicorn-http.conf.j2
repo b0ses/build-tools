@@ -15,7 +15,7 @@ server {
         proxy_pass http://unix:/{{ base_dir }}/gunicorn.sock;
     }
     location /socket.io {
-        include uwsgi_params;
+        include proxy_params;
         proxy_buffering off;
         proxy_pass http://unix:/{{ base_dir }}/gunicorn.sock;
 

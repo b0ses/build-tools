@@ -21,12 +21,12 @@ server {
     {% else %}
     location / {
         include proxy_params;
-        proxy_pass http://unix:/{{ base_dir }}/gunicorn.sock;
+        proxy_pass http://unix://{{ base_dir }}/gunicorn.sock;
     }
     location /socket.io {
         include proxy_params;
         proxy_buffering off;
-        proxy_pass http://unix:/{{ base_dir }}/gunicorn.sock;
+        proxy_pass http://unix://{{ base_dir }}/gunicorn.sock;
 
         # backup for websockets
         proxy_http_version 1.1;

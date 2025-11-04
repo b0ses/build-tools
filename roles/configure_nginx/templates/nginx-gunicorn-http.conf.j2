@@ -11,6 +11,8 @@ server {
     }
     {% else %}
     location / {
+        add_header 'Access-Control-Allow-Origin' '*';
+
         include proxy_params;
         proxy_pass http://unix://{{ base_dir }}/gunicorn.sock;
         
@@ -26,6 +28,8 @@ server {
         proxy_set_header Host $host;
     }
     location /socket.io {
+        add_header 'Access-Control-Allow-Origin' '*';
+        
         include proxy_params;
         proxy_buffering off;
         proxy_pass http://unix://{{ base_dir }}/gunicorn.sock;

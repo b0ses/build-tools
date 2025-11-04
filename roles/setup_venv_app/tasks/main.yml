@@ -44,8 +44,13 @@
 
 
 - name: Add log file in module directory
-  file:
-    path: "{{ module_dir }}/app.log"
+  copy:
+    content: ""
+    dest: "{{ module_dir }}/app.log"
+    force: false
+    owner: '{{ uid }}'
+    group: '{{ gid }}'
+    mode: 0775
 
 - name: Set permissions for base directory
   file:

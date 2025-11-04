@@ -47,6 +47,7 @@
     path: '{{ base_dir }}'
     owner: '{{ uid }}'
     group: '{{ gid }}'
+    mode: 0775
     state: directory
     recurse: yes
 

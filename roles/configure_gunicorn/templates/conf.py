@@ -9,3 +9,5 @@ group = "{{ gid }}"
 umask = "775"
 # mode = "775"
 capture_output = True
+keyfile = "/etc/letsencrypt/live/{{ domain_name }}/privkey.pem;"
+certfile = "/etc/letsencrypt/live/{{ domain_name }}/fullchain.pem;"

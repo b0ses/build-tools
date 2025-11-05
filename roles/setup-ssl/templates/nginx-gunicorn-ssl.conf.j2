@@ -11,6 +11,8 @@ server {
     ssl_certificate_key     /etc/letsencrypt/live/{{ domain_name }}/privkey.pem;
     ssl_trusted_certificate /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem;
 
+    client_max_body_size 4G;
+
     server_name {{ nginx_server_name }};
 
     {% if nginx_http_location %}
@@ -20,24 +22,14 @@ server {
     }
     {% else %}
     location / {
-        add_header 'Access-Control-Allow-Origin' '$http_origin';
-        add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
-        add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization' always;
-        add_header 'Access-Control-Allow-Credentials' 'true' always;
-
-        include proxy_params;
-        proxy_pass http://unix://{{ base_dir }}/gunicorn.sock;
-
-        # backup for websockets
-        proxy_headers_hash_max_size 1024;
-        proxy_headers_hash_bucket_size 128;
-
-        proxy_http_version 1.1;
-        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $host;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_redirect off;
+        proxy_buffering off;
+        proxy_pass http://uvicorn;
     }
     location /socket.io {
         add_header 'Access-Control-Allow-Origin' '$http_origin';
@@ -59,7 +51,7 @@ server {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_set_header Host $host;
-        # proxy_pass http://unix://{{ base_dir }}/gunicorn-http.sock;
+        # proxy_pass http://unix:/{{ base_dir }}/gunicorn-http.sock;
     }
 
     location /static {
@@ -75,6 +67,15 @@ server {
         root {{ ssl_dir }};
         try_files $uri $uri/ =404;
     }
+}
+
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    '' close;
+}
+
+upstream uvicorn {
+    server unix:/{{ base_dir }}/gunicorn.sock;
 }
 
 # Redirect http->https version

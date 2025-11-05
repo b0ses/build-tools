@@ -1,6 +1,6 @@
 ---
-uid: www-data
-gid: www-data
+uid: root
+gid: root
 nginx_dir: /etc/nginx/sites-enabled
 virtualenv_cmd: /usr/bin/python3.11 -m venv
 # Disable the default site by removing /etc/nginx/sites-enabled/default.

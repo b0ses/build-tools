@@ -3,6 +3,7 @@ worker_class = "uvicorn_worker.UvicornWorker"
 workers = {{ gunicorn_processes }}
 accesslog = "{{ base_dir }}/gunicorn.log"
 errorlog = "{{ base_dir }}/gunicorn.log"
+loglevel = "debug"
 user = "{{ uid }}"
 group = "{{ gid }}"
 umask = "775"

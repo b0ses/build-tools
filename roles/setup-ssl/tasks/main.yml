@@ -56,3 +56,11 @@
     name: nginx
     state: restarted
 
+- name: Let the web app see the SSL files via permissions/ownership
+  file:
+    path: '{{ ssl_dir }}'
+    owner: '{{ uid }}'
+    group: '{{ gid }}'
+    mode: 0775
+    state: directory
+    recurse: yes

@@ -58,7 +58,7 @@
 
 - name: Let the web app see the SSL files via permissions/ownership
   file:
-    path: 'etc/letsencrypt/live/'
+    path: '/etc/letsencrypt/live/'
     owner: '{{ uid }}'
     group: '{{ gid }}'
     mode: 0775

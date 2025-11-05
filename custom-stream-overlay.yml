@@ -129,15 +129,6 @@
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*DB_URI = ''"
         line: "DB_URI = '{{ db_uri }}'"
-      - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*USERNAME = ''"
-        line: "USERNAME = '{{ chatbot_name }}'"
-      - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*TOKEN = ''"
-        line: "TOKEN = '{{ chat_token }}'"
-      - path: 'custom_stream_api/settings.py'
-        regexp: "^\\s*CHANNEL = ''"
-        line: "CHANNEL = '{{ channel }}'"
 
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*LOGIN = False"
@@ -151,6 +142,13 @@
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*TWITCH_REDIRECT_URI = ''"
         line: "TWITCH_REDIRECT_URI = 'https://{{ domain_name }}:8080/twitch_auth'"
+
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*BOT_NAME = ''"
+        line: "BOT_NAME = '{{ chatbot_name }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*TWITCH_CHANNEL = ''"
+        line: "TWITCH_CHANNEL = '{{ channel }}'"
 
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*LIGHTS_LOCAL = True"

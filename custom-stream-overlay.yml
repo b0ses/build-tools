@@ -144,6 +144,13 @@
         line: "TWITCH_REDIRECT_URI = 'https://{{ domain_name }}:8080/twitch_auth'"
 
       - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*DISCORD_TOKEN = ''"
+        line: "DISCORD_TOKEN = '{{ discord_token }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*DISCORD_CHANNEL = ''"
+        line: "DISCORD_CHANNEL = '{{ discord_channel }}'"
+
+      - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*BOT_NAME = ''"
         line: "BOT_NAME = '{{ chatbot_name }}'"
       - path: 'custom_stream_api/settings.py'

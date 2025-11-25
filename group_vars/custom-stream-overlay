@@ -10,6 +10,7 @@ chatbot_name: "{{ lookup('env', 'CHAT_USERNAME') }}"
 chatbot_client_id: "{{ lookup('env', 'CHAT_CLIENT_ID') }}"
 chat_token: "{{ lookup('env', 'CHAT_TOKEN') }}"
 channel: "{{ lookup('env', 'CHANNEL') }}"
+timer_tz: "{{ lookup('env', 'TIMER_TZ') }}"
 cutoff: "{{ lookup('env', 'CUTOFF') }}"
 db_uri: "{{ lookup('env', 'DB_URI') }}"
 

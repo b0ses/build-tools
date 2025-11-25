@@ -156,6 +156,9 @@
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*TWITCH_CHANNEL = ''"
         line: "TWITCH_CHANNEL = '{{ channel }}'"
+      - path: 'custom_stream_api/settings.py'
+        regexp: "^\\s*TIMER_TZ = None"
+        line: "TIMER_TZ = '{{ timer_tz }}'"
 
       - path: 'custom_stream_api/settings.py'
         regexp: "^\\s*LIGHTS_LOCAL = True"

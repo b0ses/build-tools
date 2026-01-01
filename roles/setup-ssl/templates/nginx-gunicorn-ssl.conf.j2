@@ -62,7 +62,7 @@ map $http_upgrade $connection_upgrade {
     '' close;
 }
 
-upstream uvicorn {
+upstream {{ nginx_server_name }}-uvicorn {
     server unix:/{{ base_dir }}/gunicorn.sock;
 }
 

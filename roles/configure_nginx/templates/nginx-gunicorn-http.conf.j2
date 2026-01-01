@@ -20,7 +20,7 @@ server {
         proxy_set_header Connection $connection_upgrade;
         proxy_redirect off;
         proxy_buffering off;
-        proxy_pass http://uvicorn;
+        proxy_pass http://{{ nginx_server_name }}-uvicorn;
     }
     location /socket.io {
         proxy_set_header Host $http_host;
@@ -30,7 +30,7 @@ server {
         proxy_set_header Connection $connection_upgrade;
         proxy_redirect off;
         proxy_buffering off;
-        proxy_pass http://uvicorn;
+        proxy_pass http://{{ nginx_server_name }}-uvicorn;
     }
 
     location /static {

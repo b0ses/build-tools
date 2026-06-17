@@ -4,7 +4,7 @@
   shell: |
     mkdir -p ~/.ssh
     rm ~/.ssh/id_rsa.pub
-    echo "${{ admin_pub_key }}" > ~/.ssh/id_rsa.pub
+    echo \"${{ admin_pub_key }}\" > ~/.ssh/id_rsa.pub
     chmod 644 ~/.ssh/id_rsa.pub
 
 - name: Print IP 2

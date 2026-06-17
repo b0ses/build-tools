@@ -33,6 +33,10 @@
     oauth_token: "{{ do_token }}"
   register: current_droplet
 
+- name: Debug droplet variable structure
+  ansible.builtin.debug:
+    var: my_droplet
+
 - name: Print IP
   ansible.builtin.debug:
     msg: "IP is {{ current_droplet.data.ip_address }}"

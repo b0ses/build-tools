@@ -59,7 +59,7 @@ on:
         default: 'US/Eastern'
 
 jobs:
-  ansible-execution:
+  deploy-job:
     runs-on: ubuntu-latest
 
     steps:
@@ -83,7 +83,7 @@ jobs:
       - name: Configure SSH Authentication
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.ANSIBLE_SSH_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.DO_API_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           echo "ANSIBLE_HOST_KEY_CHECKING=False" >> $GITHUB_ENV
 

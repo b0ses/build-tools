@@ -15,10 +15,10 @@
 - name: Ensure key exists at DigitalOcean
   digital_ocean_sshkey:
     state: present
-    name: jenkins-key
+    name: admin-key
     ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     oauth_token: "{{ do_token }}"
-  register: jenkins_key
+  register: admin_key
 
 - name: Ensure droplet exists
   digital_ocean_droplet:

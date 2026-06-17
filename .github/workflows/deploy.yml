@@ -90,20 +90,20 @@ jobs:
       # Step 5: Create inventory file from secrets
       - name: Put secrets in env
         run: |
-          echo "DO_API_KEY=${{ secrets.do-api-token }}" >> $GITHUB_ENV
-          echo "LETSENCRYPT_EMAIL=${{ secrets.letsencrypt-email }}" >> $GITHUB_ENV
-          echo "SECRET_KEY=${{ secrets.flask-secret-key }}" >> $GITHUB_ENV
-          echo "DB_URI=${{ secrets.db-uri }}" >> $GITHUB_ENV
-          echo "CHANNEL=${{ secrets.channel }}" >> $GITHUB_ENV
-          echo "TWITCH_CLIENT_ID=${{ secrets.twitch-client-id }}" >> $GITHUB_ENV
-          echo "TWITCH_CLIENT_SECRET=${{ secrets.twitch-client-secret }}" >> $GITHUB_ENV
-          echo "CHAT_CLIENT_ID=${{ secrets.twitch-client-id }}" >> $GITHUB_ENV
-          echo "CHAT_TOKEN=${{ secrets.chat-token }}" >> $GITHUB_ENV
-          echo "CHAT_USERNAME=${{ secrets.chat-username }}" >> $GITHUB_ENV
-          echo "DISCORD_TOKEN=${{ secrets.discord-token }}" >> $GITHUB_ENV
-          echo "HUE_APP_NAME=${{ secrets.hue-app-name }}" >> $GITHUB_ENV
-          echo "HUE_CLIENT_ID=${{ secrets.hue-client-id }}" >> $GITHUB_ENV
-          echo "HUE_CLIENT_SECRET=${{ secrets.hue-client-secret }}" >> $GITHUB_ENV
+          echo "DO_API_KEY=${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
+          echo "LETSENCRYPT_EMAIL=${{ vars.LETSENCRYPT_EMAIL }}" >> $GITHUB_ENV
+          echo "SECRET_KEY=${{ secrets.FLASK_SECRET }}" >> $GITHUB_ENV
+          echo "DB_URI=${{ secrets.DB_URI }}" >> $GITHUB_ENV
+          echo "CHANNEL=${{ vars.TWITCH_CHANNEL }}" >> $GITHUB_ENV
+          echo "TWITCH_CLIENT_ID=${{ vars.TWITCH_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "TWITCH_CLIENT_SECRET=${{ secrets.TWITCH_CLIENT_SECRET }}" >> $GITHUB_ENV
+          echo "CHAT_CLIENT_ID=${{ vars.CHAT_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "CHAT_TOKEN=''" >> $GITHUB_ENV
+          echo "CHAT_USERNAME=${{ vars.TWITCH_CHAT_USERNAME }}" >> $GITHUB_ENV
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> $GITHUB_ENV
+          echo "HUE_APP_NAME=${{ vars.HUE_APP_NAME }}" >> $GITHUB_ENV
+          echo "HUE_CLIENT_ID=${{ vars.HUE_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "HUE_CLIENT_SECRET=${{ secrets.HUE_CLIENT_SECRET }}" >> $GITHUB_ENV
 
       # Step 6: Execute your automated playbook or notebook script
       - name: Run Ansible Process

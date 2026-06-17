@@ -9,14 +9,14 @@
   ansible.posix.authorized_key:
     user: "{{ ansible_user_id }}"
     state: present
-    key: "{{ lookup('file', '.ssh/id_rsa.pub') }}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     exclusive: True
 
 - name: Ensure key exists at DigitalOcean
   digitalocean.cloud.ssh_key:
     state: present
     name: admin-key
-    ssh_pub_key: "{{ lookup('file', '.ssh/id_rsa.pub') }}"
+    ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     oauth_token: "{{ do_token }}"
   register: admin_key
 

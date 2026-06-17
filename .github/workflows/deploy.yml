@@ -78,7 +78,7 @@ jobs:
 
       - name: Install ansible plugins
         run: |
-          ansible-galaxy collection install digitalocean.cloud ansible.posix
+          ansible-galaxy collection install digitalocean.cloud ansible.posix community.general.npm
 
       - name: Configure SSH Authentication
         run: |

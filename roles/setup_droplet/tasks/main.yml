@@ -1,9 +1,14 @@
 ---
 
+- name: Add admin key to .ssh/id_rsa.pub
+  shell: |
+    mkdir -p ~/.ssh
+
 - name: Write variable to a file
   ansible.builtin.copy:
     content: "{{ admin_pub_key }}"
     dest: ~/.ssh/id_rsa.pub
+    mode: '0644'
 
 - name: Print IP 2
   ansible.builtin.debug:

@@ -89,7 +89,7 @@ jobs:
 
       - name: Put secrets in env
         run: |
-          echo "DIGITALOCEAN_TOKEN="${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
+          echo "DIGITALOCEAN_TOKEN=${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
           echo "DO_API_KEY=${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
           echo "LETSENCRYPT_EMAIL=${{ vars.LETSENCRYPT_EMAIL }}" >> $GITHUB_ENV
           echo "SECRET_KEY=${{ secrets.FLASK_SECRET }}" >> $GITHUB_ENV

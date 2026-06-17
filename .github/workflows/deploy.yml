@@ -1,0 +1,115 @@
+name: Deploy via Ansible
+
+on:
+  workflow_dispatch: # Allows manual execution from the GitHub UI
+    inputs:
+      project:
+        description: 'Select which project to deploy'
+        required: true
+        type: choice
+        options:
+          - custom-stream-overlay
+          - diction-practice
+      DOMAIN_NAME:
+        description: 'Select which project to deploy'
+        required: true
+        type: choice
+        options:
+          - stream-tools.app
+          - dictionpractice.com
+      build_overlay:
+        required: false
+        type: boolean
+        default: true
+      build_api:
+        required: false
+        type: boolean
+        default: true
+      build_dashboard:
+        required: false
+        type: boolean
+        default: true
+      rebuild_db:
+        description: 'Rebuild the database'
+        required: false
+        type: boolean
+        default: false
+      LOGIN_REQUIRED:
+        description: 'Whether to enforce logging in or not'
+        required: false
+        type: boolean
+        default: false
+      CUTOFF:
+        description: 'How long to keep the sound on (0 for always on)'
+        required: false
+        type: string
+        default: '0'
+      DISCORD_CHANNEL:
+        required: false
+        type: string
+        default: 'general'
+      HUE_GROUP_NUMBER:
+        description: 'The group number for the hue lights'
+        required: false
+        type: string
+        default: '1'
+      TIMER_TZ:
+        required: false
+        type: string
+        default: 'US/Eastern'
+
+jobs:
+  deploy-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Ansible and Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible-core ansible-runner pydo boto3 requests
+
+      - name: Install ansible plugins
+        run: |
+          ansible-galaxy collection install digitalocean.cloud ansible.posix community.general
+
+      - name: Configure SSH Authentication
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DO_API_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "ANSIBLE_HOST_KEY_CHECKING=False" >> $GITHUB_ENV
+
+      - name: Put secrets in env
+        run: |
+          echo "DIGITALOCEAN_TOKEN=${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
+          echo "DO_API_KEY=${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
+          echo "LETSENCRYPT_EMAIL=${{ vars.LETSENCRYPT_EMAIL }}" >> $GITHUB_ENV
+          echo "SECRET_KEY=${{ secrets.FLASK_SECRET }}" >> $GITHUB_ENV
+          echo "DB_URI=${{ secrets.DB_URI }}" >> $GITHUB_ENV
+          echo "CHANNEL=${{ vars.TWITCH_CHANNEL }}" >> $GITHUB_ENV
+          echo "TWITCH_CLIENT_ID=${{ vars.TWITCH_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "TWITCH_CLIENT_SECRET=${{ secrets.TWITCH_CLIENT_SECRET }}" >> $GITHUB_ENV
+          echo "CHAT_CLIENT_ID=${{ vars.CHAT_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "CHAT_TOKEN=''" >> $GITHUB_ENV
+          echo "CHAT_USERNAME=${{ vars.TWITCH_CHAT_USERNAME }}" >> $GITHUB_ENV
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> $GITHUB_ENV
+          echo "HUE_APP_NAME=${{ vars.HUE_APP_NAME }}" >> $GITHUB_ENV
+          echo "HUE_CLIENT_ID=${{ vars.HUE_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "HUE_CLIENT_SECRET=${{ secrets.HUE_CLIENT_SECRET }}" >> $GITHUB_ENV
+
+      - name: Run Ansible Process
+        run: |
+          ansible-playbook custom-stream-overlay.yml
+
+      - name: Cleanup Sensitive Files
+        if: always()
+        run: |
+          rm -f ~/.ssh/id_rsa

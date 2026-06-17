@@ -105,13 +105,9 @@ jobs:
           echo "HUE_CLIENT_ID=${{ vars.HUE_CLIENT_ID }}" >> $GITHUB_ENV
           echo "HUE_CLIENT_SECRET=${{ secrets.HUE_CLIENT_SECRET }}" >> $GITHUB_ENV
 
-      - name: Copy hosts
-        run: |
-          cp hosts /etc/ansible/
-
       - name: Run Ansible Process
         run: |
-          ansible-playbook custom-stream-overlay.yml
+          ansible-playbook -i hosts custom-stream-overlay.yml
 
       - name: Cleanup Sensitive Files
         if: always()

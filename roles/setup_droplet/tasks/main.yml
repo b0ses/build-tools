@@ -35,10 +35,10 @@
 
 - name: Print IP
   ansible.builtin.debug:
-    msg: "IP is {{ current_droplet.networks.v4[0].ip_address }}"
+    msg: "IP is {{ current_droplet.droplet.networks.v4[0].ip_address }}"
 
 - name: Wait for SSH to come up
-  local_action: wait_for host={{ current_droplet.networks.v4[0].ip_address }} port=22 timeout=320 state=started
+  local_action: wait_for host={{ current_droplet.droplet.networks.v4[0].ip_address }} port=22 timeout=320 state=started
 
 - name: Adding domain for droplet
   digitalocean.cloud.domain:
@@ -47,7 +47,7 @@
     ip: "{{ current_droplet.data.ip_address }}"
 
 - name: Add new droplet to host group
-  local_action: add_host hostname={{ current_droplet.networks.v4[0].ip_address }} groupname={{ app_name }}
+  local_action: add_host hostname={{ current_droplet.droplet.networks.v4[0].ip_address }} groupname={{ app_name }}
 
 - name: Wait for domain to come up
   local_action: wait_for host={{ domain_name }} port=22 timeout=320 state=started

@@ -10,33 +10,13 @@ on:
         options:
           - custom-stream-overlay
           - diction-practice
-      rebuild_db:
-        description: 'Rebuild the database'
-        required: false
-        type: boolean
-        default: false
       DOMAIN_NAME:
         description: 'Select which project to deploy'
         required: true
         type: choice
         options:
-          - cstream-tools.app
+          - stream-tools.app
           - dictionpractice.com
-      LOGIN_REQUIRED:
-        description: 'Whether to enforce logging in or not'
-        required: false
-        type: boolean
-        default: false       
-      CUTOFF:
-        description: 'How long to keep the sound on (0 for always on)'
-        required: false
-        type: string
-        default: '0'
-      HUE_GROUP_NUMBER:
-        description: 'The group number for the hue lights'
-        required: false
-        type: string
-        default: '1'
       build_overlay:
         required: false
         type: boolean
@@ -49,10 +29,30 @@ on:
         required: false
         type: boolean
         default: true
+      rebuild_db:
+        description: 'Rebuild the database'
+        required: false
+        type: boolean
+        default: false
+      LOGIN_REQUIRED:
+        description: 'Whether to enforce logging in or not'
+        required: false
+        type: boolean
+        default: false
+      CUTOFF:
+        description: 'How long to keep the sound on (0 for always on)'
+        required: false
+        type: string
+        default: '0'
       DISCORD_CHANNEL:
         required: false
         type: string
         default: 'general'
+      HUE_GROUP_NUMBER:
+        description: 'The group number for the hue lights'
+        required: false
+        type: string
+        default: '1'
       TIMER_TZ:
         required: false
         type: string

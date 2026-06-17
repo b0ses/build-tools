@@ -108,10 +108,10 @@ jobs:
       # Step 6: Execute your automated playbook or notebook script
       - name: Run Ansible Process
         run: |
-          ansible-playbook -i inventory.ini custom-stream-overlay.yml
+          ansible-playbook custom-stream-overlay.yml
 
       # Step 7: Cleanup
       - name: Cleanup Sensitive Files
         if: always()
         run: |
-          rm -f inventory.ini ~/.ssh/id_rsa
+          rm -f ~/.ssh/id_rsa

@@ -35,7 +35,7 @@
 
 - name: Debug droplet variable structure
   ansible.builtin.debug:
-    var: my_droplet
+    var: current_droplet
 
 - name: Print IP
   ansible.builtin.debug:

@@ -9,7 +9,7 @@
 
 - name: Print IP 2
   ansible.builtin.debug:
-    msg: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    msg: "{{ admin_pub_key }}"
 
 - name: Set authorized key took from file
   ansible.posix.authorized_key:

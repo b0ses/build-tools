@@ -98,6 +98,7 @@ jobs:
           echo "HUE_GROUP_NUMBER=${{ inputs.HUE_GROUP_NUMBER }}" >> $GITHUB_ENV
           echo "TIMER_TZ=${{ inputs.TIMER_TZ }}" >> $GITHUB_ENV
 
+          echo "ADMIN_PUB_KEY=${{ vars.ADMIN_PUB_KEY }}" >> $GITHUB_ENV
           echo "DIGITALOCEAN_TOKEN=${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
           echo "DO_API_KEY=${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
           echo "LETSENCRYPT_EMAIL=${{ vars.LETSENCRYPT_EMAIL }}" >> $GITHUB_ENV

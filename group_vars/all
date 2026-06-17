@@ -43,6 +43,7 @@ gunicorn_gevent: 500
 gunicorn_env: []
 
 nodejs_version: '24'
+admin_pub_key: "{{ lookup('env', 'ADMIN_PUB_KEY') }}"
 secret_key: "{{ lookup('env', 'SECRET_KEY') }}"
 rebuild_db: "{{ lookup('env', 'rebuild_db') }}"
 build_api: "{{ lookup('env', 'build_api') }}"

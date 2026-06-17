@@ -1,5 +1,6 @@
 - name: Create droplet
-  hosts: digitalocean
+  hosts: localhost
+  connection: local
   roles:
     - setup_droplet
 

@@ -1,7 +1,5 @@
-[digitalocean]
-localhost ansible_host=local
+[web]
 custom-stream-overlay ansible_host=68.183.129.80
-ansible_python_interpreter=/usr/bin/python
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3

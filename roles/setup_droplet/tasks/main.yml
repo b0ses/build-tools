@@ -1,9 +1,4 @@
 ---
-#- name: ensure ssh key exists
-#  user:
-#    name: "{{ ansible_user_id }}"
-#    generate_ssh_key: yes
-#    ssh_key_file: ".ssh/id_rsa"
 
 - name: Add admin key to .ssh/id_rsa.pub
   run: |

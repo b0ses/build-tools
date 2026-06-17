@@ -107,7 +107,7 @@ jobs:
 
       - name: Copy hosts
         run: |
-          cp hosts /etc/ansible
+          cp hosts /etc/ansible/
 
       - name: Run Ansible Process
         run: |

@@ -33,9 +33,9 @@
     oauth_token: "{{ do_token }}"
   register: current_droplet
 
-- name: Print IP
+- name: Print IP 2
   ansible.builtin.debug:
-    msg: "{{ lookup('ansible.builtin.file', '~/.ssh/id_rsa.pub')"
+    msg: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
 - name: Print IP
   ansible.builtin.debug:

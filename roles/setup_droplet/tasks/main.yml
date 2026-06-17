@@ -44,7 +44,7 @@
   digitalocean.cloud.domain:
     state: present
     name: "{{ domain_name }}"
-    ip: "{{ current_droplet.droplet.networks.v4[0].ip_address }}"
+    ip_address: "{{ current_droplet.droplet.networks.v4[0].ip_address }}"
 
 - name: Add new droplet to host group
   local_action: add_host hostname={{ current_droplet.droplet.networks.v4[0].ip_address }} groupname={{ app_name }}

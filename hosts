@@ -1,5 +1,6 @@
 [digitalocean]
-localhost ansible_connection=local
+localhost ansible_host=local
+custom-stream-overlay ansible_host=68.183.129.80
 ansible_python_interpreter=/usr/bin/python
 
 [all:vars]

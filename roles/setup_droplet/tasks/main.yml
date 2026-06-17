@@ -1,7 +1,7 @@
 ---
 
 - name: Add admin key to .ssh/id_rsa.pub
-  run: |
+  shell: |
     mkdir -p ~/.ssh
     echo "${{ admin_pub_key }}" > ~/.ssh/id_rsa.pub
     chmod 644 ~/.ssh/id_rsa.pub

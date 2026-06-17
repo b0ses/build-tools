@@ -16,7 +16,7 @@
   digitalocean.cloud.ssh_key:
     state: present
     name: admin-key
-    ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    public_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     oauth_token: "{{ do_token }}"
   register: admin_key
 

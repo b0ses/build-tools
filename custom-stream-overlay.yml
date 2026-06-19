@@ -1,6 +1,6 @@
 - name: Create droplet
-  hosts: web
-  gather_facts: yes
+  hosts: localhost
+  gather_facts: false
   roles:
     - setup_droplet
 

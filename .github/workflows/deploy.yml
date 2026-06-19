@@ -129,7 +129,7 @@ jobs:
           HUE_CLIENT_ID: "{{ vars.HUE_CLIENT_ID }}"
           HUE_CLIENT_SECRET: "{{ secrets.HUE_CLIENT_SECRET }}"
         run: |
-          ansible-playbook -i hosts.ini custom-stream-overlay.yml
+          ansible-playbook -i hosts.ini custom-stream-overlay.yml --private-key ~/.ssh/id_rsa
 
       - name: Cleanup Sensitive Files
         if: always()

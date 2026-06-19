@@ -1,14 +1,14 @@
 ---
 
-#- name: Add admin key to .ssh/id_rsa.pub
-#  shell: |
-#    mkdir -p ~/.ssh
+- name: Add admin key to .ssh/id_rsa.pub
+  shell: |
+    mkdir -p ~/.ssh
 
-#- name: Write variable to a file
-#  ansible.builtin.copy:
-#    content: "{{ admin_pub_key }}"
-#    dest: ~/.ssh/id_rsa.pub
-#    mode: '0644'
+- name: Write variable to a file
+  ansible.builtin.copy:
+    content: "{{ admin_pub_key }}"
+    dest: ~/.ssh/id_rsa.pub
+    mode: '0644'
 
 #- name: Set authorized key took from file
 #  ansible.posix.authorized_key:
@@ -21,7 +21,7 @@
   digitalocean.cloud.ssh_key:
     state: present
     name: admin-key
-    public_key: "{{ admin_pub_key }}"
+    public_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     oauth_token: "{{ do_token }}"
   register: admin_key
 

@@ -10,17 +10,6 @@
     dest: ~/.ssh/id_rsa.pub
     mode: '0644'
 
-- name: Print pub
-  ansible.builtin.debug:
-    msg: "pub is {{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-
-#- name: Set authorized key took from file
-#  ansible.posix.authorized_key:
-#    user: "{{ ansible_user_id }}"
-#    state: present
-#    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-#    exclusive: True
-
 - name: Ensure key exists at DigitalOcean
   digitalocean.cloud.ssh_key:
     state: present

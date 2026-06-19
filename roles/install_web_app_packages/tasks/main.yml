@@ -16,8 +16,3 @@
     name: python3.11-venv
     state: present
     update_cache: yes
-
-- name: Update pip3
-  pip:
-    name: pip
-    state: latest

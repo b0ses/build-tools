@@ -35,6 +35,13 @@
   environment:
     PYTHONPATH: "{{ base_dir }}"
 
+- name: Update pip3
+  pip:
+    name: pip
+    state: latest
+    virtualenv: "{{ base_dir }}/.venvs/{{ module_name }}"
+    virtualenv_command: "{{ virtualenv_cmd }}"
+
 - name: Install requirements.txt
   pip:
     requirements: '{{ appdata_dir }}/requirements.txt'

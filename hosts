@@ -1,5 +1,0 @@
-[web]
-custom-stream-overlay ansible_host=68.183.129.80
-
-[all:vars]
-ansible_python_interpreter=/usr/bin/python3

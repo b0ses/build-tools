@@ -84,40 +84,52 @@ jobs:
         run: |
           echo "ANSIBLE_HOST_KEY_CHECKING=False" >> $GITHUB_ENV
 
-      - name: Put secrets in env
+      - name: Set up SSH Key
         run: |
-          echo "project=${{ inputs.project }}" >> $GITHUB_ENV
-          echo "DOMAIN_NAME=${{ inputs.DOMAIN_NAME }}" >> $GITHUB_ENV
-          echo "build_overlay=${{ inputs.build_overlay }}" >> $GITHUB_ENV
-          echo "build_api=${{ inputs.build_api }}" >> $GITHUB_ENV
-          echo "build_dashboard=${{ inputs.build_dashboard }}" >> $GITHUB_ENV
-          echo "rebuild_db=${{ inputs.rebuild_db }}" >> $GITHUB_ENV
-          echo "LOGIN_REQUIRED=${{ inputs.LOGIN_REQUIRED }}" >> $GITHUB_ENV
-          echo "CUTOFF=${{ inputs.CUTOFF }}" >> $GITHUB_ENV
-          echo "DISCORD_CHANNEL=${{ inputs.DISCORD_CHANNEL }}" >> $GITHUB_ENV
-          echo "HUE_GROUP_NUMBER=${{ inputs.HUE_GROUP_NUMBER }}" >> $GITHUB_ENV
-          echo "TIMER_TZ=${{ inputs.TIMER_TZ }}" >> $GITHUB_ENV
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # Scan the droplet's host key to prevent "Host key verification failed" errors
+          ssh-keyscan -H ${{ secrets.DO_DROPLET_IP }} >> ~/.ssh/known_hosts
 
-          echo "ADMIN_PUB_KEY=${{ vars.ADMIN_PUB_KEY }}" >> $GITHUB_ENV
-          echo "DIGITALOCEAN_TOKEN=${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
-          echo "DO_API_KEY=${{ secrets.DO_API_KEY }}" >> $GITHUB_ENV
-          echo "LETSENCRYPT_EMAIL=${{ vars.LETSENCRYPT_EMAIL }}" >> $GITHUB_ENV
-          echo "SECRET_KEY=${{ secrets.FLASK_SECRET }}" >> $GITHUB_ENV
-          echo "DB_URI=${{ secrets.DB_URI }}" >> $GITHUB_ENV
-          echo "CHANNEL=${{ vars.TWITCH_CHANNEL }}" >> $GITHUB_ENV
-          echo "TWITCH_CLIENT_ID=${{ vars.TWITCH_CLIENT_ID }}" >> $GITHUB_ENV
-          echo "TWITCH_CLIENT_SECRET=${{ secrets.TWITCH_CLIENT_SECRET }}" >> $GITHUB_ENV
-          echo "CHAT_CLIENT_ID=${{ vars.CHAT_CLIENT_ID }}" >> $GITHUB_ENV
-          echo "CHAT_TOKEN=''" >> $GITHUB_ENV
-          echo "CHAT_USERNAME=${{ vars.TWITCH_CHAT_USERNAME }}" >> $GITHUB_ENV
-          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> $GITHUB_ENV
-          echo "HUE_APP_NAME=${{ vars.HUE_APP_NAME }}" >> $GITHUB_ENV
-          echo "HUE_CLIENT_ID=${{ vars.HUE_CLIENT_ID }}" >> $GITHUB_ENV
-          echo "HUE_CLIENT_SECRET=${{ secrets.HUE_CLIENT_SECRET }}" >> $GITHUB_ENV
+      - name: Prepare Inventory
+        run: |
+          sed -i 's/${DO_BOX_IP}/${{ secrets.DO_BOX_IP }}/g' hosts.ini
 
       - name: Run Ansible Process
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: "False"
+
+          project: "{{ inputs.project }}"
+          DOMAIN_NAME: "{{ inputs.DOMAIN_NAME }}"
+          build_overlay: "{{ inputs.build_overlay }}"
+          build_api: "{{ inputs.build_api }}"
+          build_dashboard: "{{ inputs.build_dashboard }}"
+          rebuild_db: "{{ inputs.rebuild_db }}"
+          LOGIN_REQUIRED: "{{ inputs.LOGIN_REQUIRED }}"
+          CUTOFF: "{{ inputs.CUTOFF }}"
+          DISCORD_CHANNEL: "{{ inputs.DISCORD_CHANNEL }}"
+          HUE_GROUP_NUMBER: "{{ inputs.HUE_GROUP_NUMBER }}"
+          TIMER_TZ: "{{ inputs.TIMER_TZ }}"
+
+          ADMIN_PUB_KEY: "{{ vars.ADMIN_PUB_KEY }}"
+          DIGITALOCEAN_TOKEN: "{{ secrets.DO_API_KEY }}"
+          DO_API_KEY: "{{ secrets.DO_API_KEY }}"
+          LETSENCRYPT_EMAIL: "{{ vars.LETSENCRYPT_EMAIL }}"
+          SECRET_KEY: "{{ secrets.FLASK_SECRET }}"
+          DB_URI: "{{ secrets.DB_URI }}"
+          CHANNEL: "{{ vars.TWITCH_CHANNEL }}"
+          TWITCH_CLIENT_ID: "{{ vars.TWITCH_CLIENT_ID }}"
+          TWITCH_CLIENT_SECRET: "{{ secrets.TWITCH_CLIENT_SECRET }}"
+          CHAT_CLIENT_ID: "{{ vars.CHAT_CLIENT_ID }}"
+          CHAT_TOKEN: ''
+          CHAT_USERNAME: "{{ vars.TWITCH_CHAT_USERNAME }}"
+          DISCORD_TOKEN: "{{ secrets.DISCORD_TOKEN }}"
+          HUE_APP_NAME: "{{ vars.HUE_APP_NAME }}"
+          HUE_CLIENT_ID: "{{ vars.HUE_CLIENT_ID }}"
+          HUE_CLIENT_SECRET: "{{ secrets.HUE_CLIENT_SECRET }}"
         run: |
-          ansible-playbook -i hosts custom-stream-overlay.yml
+          ansible-playbook -i hosts.ini custom-stream-overlay.yml
 
       - name: Cleanup Sensitive Files
         if: always()

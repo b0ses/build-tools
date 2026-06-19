@@ -80,10 +80,39 @@ jobs:
         run: |
           ansible-galaxy collection install digitalocean.cloud ansible.posix community.general
 
-      - name: Setup SSH Key Agent
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: "${{ secrets.PRIVATE_KEY }}"
+#      - name: Setup SSH Key Agent
+#        uses: webfactory/ssh-agent@v0.9.0
+#        with:
+#          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Set up SSH Agent with Passphrase
+        env:
+          SSH_KEY: ${{ secrets.ADMIN_PRIVATE_KEY }}
+          SSH_PASSPHRASE: ${{ secrets.ADMIN_PASSPHRASE }}
+        run: |
+          # Start the SSH agent in the background
+          eval $(ssh-agent -s)
+
+          # Create a helper script to securely supply the passphrase to ssh-add
+          echo -e '#!/bin/sh\necho "$SSH_PASSPHRASE"' > ~/.ssh_askpass
+          chmod +x ~/.ssh_askpass
+
+          # Make the private key file with proper restricted permissions
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          # Use SSH_ASKPASS to load the passphrase-protected key silently
+          export DISPLAY=:0
+          export SSH_ASKPASS=~/.ssh_askpass
+          setsid ssh-add ~/.ssh/id_ed25519 < /dev/null
+
+          # Clean up the askpass script immediately for security
+          rm ~/.ssh_askpass
+
+          # Save agent environment variables for use in subsequent steps
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
+          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> $GITHUB_ENV
 
       - name: Run Ansible Process
         env:

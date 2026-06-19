@@ -10,21 +10,21 @@
 #    dest: ~/.ssh/id_rsa.pub
 #    mode: '0644'
 
-#- name: Set authorized key took from file
-#  ansible.posix.authorized_key:
-#    user: "{{ ansible_user_id }}"
-#    state: present
-#    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-#    exclusive: True
+- name: Set authorized key took from file
+  ansible.posix.authorized_key:
+    user: "{{ ansible_user_id }}"
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    exclusive: True
 
 
-#- name: Ensure key exists at DigitalOcean
-#  digitalocean.cloud.ssh_key:
-#    state: present
-#    name: admin-key
-#    public_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-#    oauth_token: "{{ do_token }}"
-#  register: admin_key
+- name: Ensure key exists at DigitalOcean
+  digitalocean.cloud.ssh_key:
+    state: present
+    name: admin-key
+    public_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    oauth_token: "{{ do_token }}"
+  register: admin_key
 
 - name: Ensure droplet exists
   digitalocean.cloud.droplet:
@@ -51,6 +51,9 @@
     state: present
     name: "{{ domain_name }}"
     ip_address: "{{ current_droplet.droplet.networks.v4[0].ip_address }}"
+
+- name: Scan the droplet's host key to prevent "Host key verification failed" errors
+  local_action: ssh-keyscan -H ${{ current_droplet.droplet.networks.v4[0].ip_address }} >> ~/.ssh/known_hosts
 
 - name: Add new droplet to host group
   local_action: add_host hostname={{ current_droplet.droplet.networks.v4[0].ip_address }} groupname={{ app_name }}

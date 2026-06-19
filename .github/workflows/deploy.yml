@@ -80,17 +80,11 @@ jobs:
         run: |
           ansible-galaxy collection install digitalocean.cloud ansible.posix community.general
 
-      - name: Configure SSH Authentication
-        run: |
-          echo "ANSIBLE_HOST_KEY_CHECKING=False" >> $GITHUB_ENV
-
       - name: Set up SSH Key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          # Scan the droplet's host key to prevent "Host key verification failed" errors
-          ssh-keyscan -H ${{ secrets.DO_DROPLET_IP }} >> ~/.ssh/known_hosts
 
       - name: Prepare Inventory
         run: |

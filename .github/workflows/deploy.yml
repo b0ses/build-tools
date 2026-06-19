@@ -56,7 +56,7 @@ on:
       TIMER_TZ:
         required: false
         type: string
-        default: 'US/Eastern'
+        default: 'America/New_York'
 
 jobs:
   deploy-job:
